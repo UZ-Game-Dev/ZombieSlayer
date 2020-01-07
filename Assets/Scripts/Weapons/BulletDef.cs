@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletDefinition : MonoBehaviour
+public class BulletDef : MonoBehaviour
 {
 	public float speed;
     public int damageOnHit;
@@ -15,6 +15,11 @@ public class BulletDefinition : MonoBehaviour
 
    void OnTriggerEnter2D(Collider2D collision)
     {
+        ZombieDef zombie = collision.GetComponent<ZombieDef>();
+        if (zombie != null)
+        {
+            zombie.TakeDamage(damageOnHit);
+        }
 		Destroy(gameObject);
     }
 }
