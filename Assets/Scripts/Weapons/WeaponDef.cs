@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class WeaponDefinition : MonoBehaviour
+public class WeaponDef : MonoBehaviour
 {
     public enum WeaponType { pistol, shotgun, rifle };
     public bool isShooting = false;
     [Header("Definiowanie Dynamiczne")]
+    public WeaponType weaponType;
     public Transform firePoint;
     public GameObject bullet;
     public float delayBetweenShots;
@@ -40,8 +41,3 @@ public class WeaponDefinition : MonoBehaviour
     }
 }
 
-public class Weapon : WeaponDefinition
-{
-    public WeaponType type = WeaponType.pistol;
-    
-}
