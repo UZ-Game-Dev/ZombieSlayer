@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &85550540
 Transform:
   m_ObjectHideFlags: 0
@@ -185,13 +185,14 @@ GameObject:
   m_Component:
   - component: {fileID: 140490463}
   - component: {fileID: 140490464}
+  - component: {fileID: 140490465}
   m_Layer: 0
   m_Name: Kalash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &140490463
 Transform:
   m_ObjectHideFlags: 0
@@ -255,6 +256,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &140490465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140490462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afc87e096e25284d9e9c3170c73e2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShooting: 0
+  weaponType: 2
+  firePoint: {fileID: 301476001}
+  bullet: {fileID: 453597298684299663, guid: 75722692fd9367a4d95f0dd757611aa8, type: 3}
+  delayBetweenShots: 0.23
 --- !u!1 &182367594
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,13 +363,14 @@ GameObject:
   m_Component:
   - component: {fileID: 224562716}
   - component: {fileID: 224562717}
+  - component: {fileID: 224562718}
   m_Layer: 0
   m_Name: Carbine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &224562716
 Transform:
   m_ObjectHideFlags: 0
@@ -415,6 +434,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &224562718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224562715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afc87e096e25284d9e9c3170c73e2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShooting: 0
+  weaponType: 2
+  firePoint: {fileID: 301476001}
+  bullet: {fileID: 453597298684299663, guid: 75722692fd9367a4d95f0dd757611aa8, type: 3}
+  delayBetweenShots: 0.15
 --- !u!1 &277301545
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +901,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1393313597}
-  - component: {fileID: 1393313599}
   - component: {fileID: 1393313598}
   m_Layer: 0
   m_Name: Weapon
@@ -905,23 +940,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1722082278}
---- !u!114 &1393313599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393313596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5afc87e096e25284d9e9c3170c73e2db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isShooting: 0
-  weaponType: 1
-  firePoint: {fileID: 301476001}
-  bullet: {fileID: 453597298684299663, guid: 75722692fd9367a4d95f0dd757611aa8, type: 3}
-  delayBetweenShots: 0.15
 --- !u!1 &1505657547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4646,6 +4664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1722082278}
   - component: {fileID: 1722082279}
+  - component: {fileID: 1722082280}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -4716,6 +4735,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1722082280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722082277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afc87e096e25284d9e9c3170c73e2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isShooting: 0
+  weaponType: 1
+  firePoint: {fileID: 301476001}
+  bullet: {fileID: 453597298684299663, guid: 75722692fd9367a4d95f0dd757611aa8, type: 3}
+  delayBetweenShots: 0.8
 --- !u!1 &1890757899
 GameObject:
   m_ObjectHideFlags: 3
