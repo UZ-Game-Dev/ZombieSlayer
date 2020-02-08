@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1360466128296399188}
   - component: {fileID: 7004715281041023532}
   - component: {fileID: 7389142019815037762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ziomek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
