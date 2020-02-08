@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed=5f;
-
     public Rigidbody2D rb;
 
     Vector2 movement;
@@ -14,6 +13,14 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        if (movement.x < 0)
+        {
+           GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (movement.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     void FixedUpdate()
