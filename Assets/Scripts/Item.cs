@@ -9,7 +9,7 @@ public enum Types
     Coin
 }
 
-public class Item : MonoBehaviiour
+public class Item : MonoBehaviour
 {
     public Types types;
 
@@ -17,18 +17,17 @@ public class Item : MonoBehaviiour
 
     void Update()
     {
-        Destroy(this.gameObject, lifetime);
+        Destroy(this.gameObject, lifeTime);
     }
 }
-
+/*
 public class Inventory
 {
 
     [System.Serializable]
     public class Amount
     {
-      
-        public int current;
+        public current;
         public int max;
 
         public void AddCurrent(int value)
@@ -46,8 +45,6 @@ public class Inventory
     [System.Serializable]
     public class Consumables
     {
-       
-
         public Types type;
         public Amount amount;
         public Consumables() { }
@@ -79,3 +76,4 @@ public class Inventory
         }
     }   
 }
+*/
