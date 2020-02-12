@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ZombieDef : MonoBehaviour
 {
-
+    private ZombieSpawner sp;
+    public GameObject Zspawner;
     public int damage;
     public int health;
     public float speed;
     private Transform playerPos;
     void Start()
     {
+        sp = FindObjectOfType<ZombieSpawner>();
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
@@ -25,6 +27,8 @@ public class ZombieDef : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            ZombieSpawner sc = gameObject.GetComponent<ZombieSpawner>();
+            sp.zombieKilled++;
             Destroy(gameObject);
         }
     }

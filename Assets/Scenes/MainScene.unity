@@ -167,6 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92362a4a607668048ae751772f32268b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exit1: {fileID: 0}
+  exit2: {fileID: 0}
+  exit3: {fileID: 0}
+  exit4: {fileID: 0}
+  zombieCounter: 5
+  zombieCount: 0
   timeBetwSpawn: 1
   enemy: {fileID: 2838826916176962704, guid: d044e16ccc53ed8458d0606bd542871c, type: 3}
   zombies:
