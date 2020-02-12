@@ -4,7 +4,6 @@ using UnityEngine;
 public class ZombieDef : MonoBehaviour
 {
     private ZombieSpawner sp;
-    public GameObject Zspawner;
     public int damage;
     public int health;
     public float speed;
@@ -35,12 +34,12 @@ public class ZombieDef : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /* jak bedzie skrypt player
-        player player = collision.GetComponent<player>();
+
+        PlayerMovement player = collision.GetComponent<PlayerMovement>();
         if (player != null)
         {
             player.TakeDamage(damage);
         }
-        */
+
     }
 }
