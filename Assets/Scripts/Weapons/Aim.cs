@@ -9,7 +9,6 @@ public class Aim : MonoBehaviour
     private Vector3 object_pos;
     public GameObject weapon_sprite;
     public GameObject player_sprite;
-    private bool flipped = false;
     public float angle;
 
     void Update()
