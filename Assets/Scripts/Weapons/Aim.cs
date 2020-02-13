@@ -8,7 +8,7 @@ public class Aim : MonoBehaviour
     public Transform target;
     private Vector3 object_pos;
     public GameObject weapon_sprite;
-    private bool flipped = false;
+    public GameObject player_sprite;
     public float angle;
 
     void Update()
@@ -24,10 +24,12 @@ public class Aim : MonoBehaviour
         if (angle > 90 || angle < -90)
         {
             weapon_sprite.GetComponent<SpriteRenderer>().flipY = true;
+            player_sprite.GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             weapon_sprite.GetComponent<SpriteRenderer>().flipY = false;
+            player_sprite.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 }
