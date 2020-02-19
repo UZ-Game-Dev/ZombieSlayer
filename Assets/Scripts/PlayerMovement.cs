@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float InvAfterDmg;
     public float moveSpeed=5f;
     public Rigidbody2D rb;
+    public Animator animator;
 
     private Main main;
     public bool invulnerable = false;

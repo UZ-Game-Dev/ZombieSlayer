@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 873972631886375100}
   - component: {fileID: 1063209977341490924}
   m_Layer: 11
-  m_Name: bullet
+  m_Name: SmgBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damageOnHit: 5
+  damageOnHit: 3
 --- !u!114 &8635033878452029658
 MonoBehaviour:
   m_ObjectHideFlags: 0
