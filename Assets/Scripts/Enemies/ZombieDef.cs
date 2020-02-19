@@ -26,13 +26,13 @@ public class ZombieDef : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            ZombieSpawner sc = gameObject.GetComponent<ZombieSpawner>();
-            sp.zombieKilled++;
+
+            sp.zombieKilled++; 
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
 
         PlayerMovement player = collision.GetComponent<PlayerMovement>();

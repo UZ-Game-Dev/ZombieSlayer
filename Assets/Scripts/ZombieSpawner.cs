@@ -54,4 +54,9 @@ public class ZombieSpawner : MonoBehaviour
         Instantiate(enemy, zombies[Random.Range(0, 4)].position, Quaternion.identity);
         yield return new WaitForSeconds(timeBetwSpawn);
     }
+
+    
+    
+       
+    
 }

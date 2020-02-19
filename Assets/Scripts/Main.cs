@@ -33,7 +33,7 @@ public class Main : MonoBehaviour
     }
 
 
-    IEnumerator LoadLevelAsync(int nr)
+    public IEnumerator LoadLevelAsync(int nr)
     {
         AsyncOperation loadLevelAsync = SceneManager.LoadSceneAsync(nr);
 
