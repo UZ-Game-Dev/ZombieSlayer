@@ -5,18 +5,37 @@ using UnityEngine;
 public class WeaponPickup : MonoBehaviour
 {
     public int weaponNumber;
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    public bool touched;
+    
+    private WeaponMenager wm;
+    private Collider2D collision;
 
-        WeaponMenager wp = collision.GetComponentInChildren<WeaponMenager>();
-        if (wp != null)
+    private void Update()
+    {
+        if (touched && Input.GetButtonDown("Use"))
         {
-            if (wp.currentWeapon != weaponNumber)
+            if (wm.currentWeapon != weaponNumber)
             {
-                wp.ChangeWeapon(weaponNumber);
+                wm.ChangeWeapon(weaponNumber);
                 Destroy(gameObject);
             }
         }
+    }
 
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        wm = coll.GetComponentInChildren<WeaponMenager>();
+        if (wm != null)
+        {
+            collision = coll;
+            touched = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (touched)
+        {
+            touched = false;
+        }
     }
 }
