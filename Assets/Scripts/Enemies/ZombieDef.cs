@@ -34,7 +34,7 @@ public class ZombieDef : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    /*
     private void OnTriggerStay2D(Collider2D collision)
     {
 
@@ -44,5 +44,5 @@ public class ZombieDef : MonoBehaviour
             player.TakeDamage(damage);
         }
 
-    }
+    } */
 }
