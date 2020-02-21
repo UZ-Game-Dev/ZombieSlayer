@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class WeaponDef : MonoBehaviour
 {
-    public enum WeaponType { AK, M4, Shotgun};
+    public enum WeaponType { AK, M4, Shotgun, SMG };
     public bool isShooting = false;
     [Header("Definiowanie Dynamiczne")]
     public WeaponType weaponType;

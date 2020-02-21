@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float InvAfterDmg;
     public float moveSpeed=5f;
     public Rigidbody2D rb;
+    public Animator animator;
 
     private Main main;
     private WeaponMenager weaponMenager;
@@ -33,6 +34,26 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        //animator
+        if (movement != Vector2.zero)
+        {
+            animator.SetBool("walking", true);
+        }
+        else
+        {
+            animator.SetBool("walking", false);
+        }
+
+        if (movement.x > 0)
+        {
+            animator.SetBool("walkRight", true);
+        }
+        if (movement.x < 0)
+        {
+            animator.SetBool("walkRight", false);
+        }
+        
+        movement.Normalize();
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
