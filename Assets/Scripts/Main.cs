@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Main : MonoBehaviour
 {
     public Text healthText;
+    public Text ammoText;
     public static bool GameOver = false;
 
     public GameObject gameoverUI;
@@ -16,7 +17,6 @@ public class Main : MonoBehaviour
     {
         if (health < 0) 
         {
-
             if (GameOver)
             {
                 Resume();
@@ -25,11 +25,15 @@ public class Main : MonoBehaviour
             {
                 Pause();
             }
-
             health = 0;
             //StartCoroutine(LoadLevelAsync(SceneManager.GetActiveScene().buildIndex));
         }
         healthText.text = "Health: " + health;
+    }
+
+    public void SetAmmo(int ammo)
+    {
+        ammoText.text = "" + ammo;
     }
 
 
