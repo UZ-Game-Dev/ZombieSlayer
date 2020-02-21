@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Aim : MonoBehaviour
 {
-
+    public Animator animator;
     private Vector3 mouse_pos;
     public Transform target;
     private Vector3 object_pos;
@@ -25,11 +25,15 @@ public class Aim : MonoBehaviour
         {
             weapon_sprite.GetComponent<SpriteRenderer>().flipY = true;
             player_sprite.GetComponent<SpriteRenderer>().flipX = true;
+
+            animator.SetBool("lookRight", false);
         }
         else
         {
             weapon_sprite.GetComponent<SpriteRenderer>().flipY = false;
             player_sprite.GetComponent<SpriteRenderer>().flipX = false;
+
+            animator.SetBool("lookRight", true);
         }
     }
 }

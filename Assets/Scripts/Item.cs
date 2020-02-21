@@ -15,9 +15,35 @@ public class Item : MonoBehaviour
 
     public float lifeTime;
 
+    public bool touched;
+    private PlayerMovement player;
+    private Collider2D collision;
+
     void Update()
     {
         Destroy(this.gameObject, lifeTime);
+
+        if (touched && Input.GetButtonDown("Use"))
+        {
+            player.Pickup(types, gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        player = coll.GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            collision = coll;
+            touched = true;
+        }    
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (touched)
+        {
+            touched = false;
+        }
     }
 }
 /*

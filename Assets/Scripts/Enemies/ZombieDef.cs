@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ZombieDef : MonoBehaviour
 {
-    private ZombieSpawner sp;
+
     public int damage;
     public int health;
     public float speed;
     private Transform playerPos;
+    private ZombieSpawner sp;
+    private Rigidbody2D rb;
     void Start()
     {
         sp = FindObjectOfType<ZombieSpawner>();
+        rb = GetComponent<Rigidbody2D>();
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
     void Update()
     {
-
+        playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
         //poruszanie sie w strone gracza
-        transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime); 
+        //transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
+        rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
     }
 
     public void TakeDamage(int damage)
@@ -26,13 +30,12 @@ public class ZombieDef : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            ZombieSpawner sc = gameObject.GetComponent<ZombieSpawner>();
-            sp.zombieKilled++;
+            sp.zombieKilled++; 
             Destroy(gameObject);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*
+    private void OnTriggerStay2D(Collider2D collision)
     {
 
         PlayerMovement player = collision.GetComponent<PlayerMovement>();
@@ -41,5 +44,5 @@ public class ZombieDef : MonoBehaviour
             player.TakeDamage(damage);
         }
 
-    }
+    } */
 }
