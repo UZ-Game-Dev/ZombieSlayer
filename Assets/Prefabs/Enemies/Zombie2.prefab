@@ -130,9 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d77bf4b0007c7a49823ac8bf13c7295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  score: 25
+  damage: 40
   health: 20
   speed: 2
+  dropList: []
 --- !u!212 &1360466128296399188
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1079087107848361868}
   - component: {fileID: 1079087107848361869}
+  - component: {fileID: 5319793277437209357}
   - component: {fileID: 1079087107848361867}
   - component: {fileID: 1079087107848361870}
   m_Layer: 12
@@ -127,6 +128,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponNumber: 2
+  touched: 0
+--- !u!114 &5319793277437209357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079087107848361866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ff20fb51f07e34ebda4fe53f7edbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  types: 4
+  chanceToDrop: 0.1
+  lifeTime: 20
   touched: 0
 --- !u!212 &1079087107848361867
 SpriteRenderer:
