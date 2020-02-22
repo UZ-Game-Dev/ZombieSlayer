@@ -4653,10 +4653,10 @@ MonoBehaviour:
   exit3: {fileID: 36695220}
   exit4: {fileID: 479309581}
   zombieKilled: 0
-  zombieCounter: 10
+  zombieCounter: 40
   zombieCount: 0
-  timeBetwSpawn: 1
-  enemy: {fileID: 2838826916176962704, guid: 5d211c1acbb1fde4684902278c441bb1, type: 3}
+  timeBetwSpawn: 0.9
+  enemy: {fileID: 2838826916176962704, guid: be6c78f0eedc07d4ca74f549ccbeec07, type: 3}
   zombies:
   - {fileID: 2094771883}
   - {fileID: 2063340801}

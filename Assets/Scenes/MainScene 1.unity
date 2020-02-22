@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 36695221}
   - component: {fileID: 36695222}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: EXIT 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 72806025}
   - component: {fileID: 72806027}
   - component: {fileID: 72806026}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: Sea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4554,7 +4554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 79928959}
   - component: {fileID: 79928960}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: EXIT 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4653,9 +4653,9 @@ MonoBehaviour:
   exit3: {fileID: 36695220}
   exit4: {fileID: 479309581}
   zombieKilled: 0
-  zombieCounter: 40
+  zombieCounter: 20
   zombieCount: 0
-  timeBetwSpawn: 1
+  timeBetwSpawn: 0.9
   enemy: {fileID: 2838826916176962704, guid: 5d211c1acbb1fde4684902278c441bb1, type: 3}
   zombies:
   - {fileID: 2094771883}
@@ -4802,7 +4802,7 @@ GameObject:
   m_Component:
   - component: {fileID: 152128570}
   - component: {fileID: 152128571}
-  m_Layer: 13
+  m_Layer: 1
   m_Name: BOX4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4817,7 +4817,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152128569}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.5, y: 7, z: 0}
+  m_LocalPosition: {x: 15.5, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 277301547}
@@ -5423,7 +5423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479309582}
   - component: {fileID: 479309583}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: EXIT 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5480,7 +5480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 758456028}
   - component: {fileID: 758456029}
-  m_Layer: 13
+  m_Layer: 1
   m_Name: BOX1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5637,7 +5637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 810927344}
   - component: {fileID: 810927345}
-  m_Layer: 13
+  m_Layer: 1
   m_Name: BOX7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5926,7 +5926,7 @@ MonoBehaviour:
   isShooting: 0
   weaponType: 0
   ammo: 0
-  ammoMax: 999
+  ammoMax: 1000
   firePoint: {fileID: 1565274608}
   bullet: {fileID: 453597298684299663, guid: 75722692fd9367a4d95f0dd757611aa8, type: 3}
   delayBetweenShots: 0.23
@@ -6591,7 +6591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1369043003}
   - component: {fileID: 1369043004}
-  m_Layer: 13
+  m_Layer: 10
   m_Name: EXIT 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6698,7 +6698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1406416636}
   - component: {fileID: 1406416637}
-  m_Layer: 13
+  m_Layer: 1
   m_Name: BOX8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6996,7 +6996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1560781106}
   - component: {fileID: 1560781107}
-  m_Layer: 13
+  m_Layer: 1
   m_Name: BOX6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7176,7 +7176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1613764478}
   - component: {fileID: 1613764479}
-  m_Layer: 13
+  m_Layer: 1
   m_Name: BOX2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7994,7 +7994,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1897834628}
   - component: {fileID: 1897834629}
-  m_Layer: 13
+  m_Layer: 1
   m_Name: BOX3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8075,8 +8075,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5, y: -5}
-  m_SizeDelta: {x: 145, y: 30}
+  m_AnchoredPosition: {x: 100, y: -15}
+  m_SizeDelta: {x: 276, y: 61}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1975226654
 MonoBehaviour:
@@ -8098,7 +8098,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -8178,7 +8178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2008627495}
   - component: {fileID: 2008627496}
-  m_Layer: 13
+  m_Layer: 1
   m_Name: BOX5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8259,8 +8259,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchoredPosition: {x: -158, y: 880}
+  m_SizeDelta: {x: 191.4, y: 52.4}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2039598788
 MonoBehaviour:
@@ -8282,7 +8282,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -8293,7 +8293,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9999
+  m_Text: 1000
 --- !u!222 &2039598789
 CanvasRenderer:
   m_ObjectHideFlags: 0
