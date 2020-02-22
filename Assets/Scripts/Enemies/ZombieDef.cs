@@ -8,6 +8,9 @@ public class ZombieDef : MonoBehaviour
     public int damage;
     public int health;
     public float speed;
+    public GameObject[] dropList;
+
+    Vector2 moveDirection;
     private Transform playerPos;
     private ZombieSpawner sp;
     private Rigidbody2D rb;
@@ -24,7 +27,18 @@ public class ZombieDef : MonoBehaviour
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
         //poruszanie sie w strone gracza
         //transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
-        rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
+        moveDirection = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
+        /*fliper nie działa
+        Debug.Log(moveDirection.x);
+        if (moveDirection.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }*/
+        rb.MovePosition(moveDirection);
     }
 
     public void TakeDamage(int damage)
@@ -32,22 +46,25 @@ public class ZombieDef : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Debug.Log("1");
             main.addScore(score);
-            Debug.Log("2");
-            sp.zombieKilled++; 
+            sp.zombieKilled++;
+            Drop();
             Destroy(gameObject);
         }
     }
-    /*
-    private void OnTriggerStay2D(Collider2D collision)
+
+    public void Drop() 
     {
-
-        PlayerMovement player = collision.GetComponent<PlayerMovement>();
-        if (player != null)
+        //leci przez cala liste i sprawdza czy dropnie
+        for (int i = 0; i < dropList.Length; i++)
         {
-            player.TakeDamage(damage);
+            float rand = Random.Range(0f, 1f);
+            if (rand < dropList[i].GetComponent<Item>().chanceToDrop) //pobiera chanceToDrop z dziedziczonej klasy GunDefinition dla każdego GO z listy, zajebiscie
+            {
+                Instantiate(dropList[i], transform.position, Quaternion.identity);
+                break;
+            }
         }
+    }
 
-    } */
 }

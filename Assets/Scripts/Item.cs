@@ -6,13 +6,16 @@ public enum Types
 {
     Ammunition,
     Bandages,
-    Coin
+    Coin,
+    M4,
+    Shotgun,
+    SMG
 }
 
 public class Item : MonoBehaviour
 {
     public Types types;
-
+    public float chanceToDrop;
     public float lifeTime;
 
     public bool touched;

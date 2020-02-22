@@ -95,7 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   types: 1
-  lifeTime: 20
+  chanceToDrop: 0.1
+  lifeTime: 30
   touched: 0
 --- !u!61 &2272286727039935308
 BoxCollider2D:

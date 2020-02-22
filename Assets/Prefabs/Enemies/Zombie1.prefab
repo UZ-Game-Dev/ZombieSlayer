@@ -131,9 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 30
-  damage: 25
+  damage: 60
   health: 25
   speed: 2.5
+  dropList: []
 --- !u!212 &1360466128296399188
 SpriteRenderer:
   m_ObjectHideFlags: 0
