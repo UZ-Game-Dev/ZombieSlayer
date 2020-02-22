@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 public class ZombieDef : MonoBehaviour
 {
-
+    public int score;
+    private Main main;
     public int damage;
     public int health;
     public float speed;
@@ -12,6 +13,7 @@ public class ZombieDef : MonoBehaviour
     private Rigidbody2D rb;
     void Start()
     {
+        main = FindObjectOfType<Main>();
         sp = FindObjectOfType<ZombieSpawner>();
         rb = GetComponent<Rigidbody2D>();
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -30,6 +32,9 @@ public class ZombieDef : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            Debug.Log("1");
+            main.addScore(score);
+            Debug.Log("2");
             sp.zombieKilled++; 
             Destroy(gameObject);
         }
