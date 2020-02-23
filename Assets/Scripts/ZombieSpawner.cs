@@ -9,6 +9,7 @@ public class ZombieSpawner : MonoBehaviour
     public GameObject exit3;
     public GameObject exit4;
     public GameObject ExitArrows;
+    public GameObject VictoryImage;
     public int zombieKilled=0;
     public int zombieCounter;
     public int zombieCount;
@@ -20,6 +21,7 @@ public class ZombieSpawner : MonoBehaviour
     {
         spawning = false;
         ExitArrows.SetActive(false);
+        VictoryImage.SetActive(false);
     }
     private void Update()
 
@@ -37,6 +39,7 @@ public class ZombieSpawner : MonoBehaviour
             exit3.SetActive(false);
             exit4.SetActive(false);
             ExitArrows.SetActive(true);
+            VictoryImage.SetActive(true);
         }
     }
     IEnumerator SpawnOrder()
