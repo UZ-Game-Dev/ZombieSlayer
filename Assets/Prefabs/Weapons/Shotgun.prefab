@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   types: 4
-  chanceToDrop: 0.1
+  chanceToDrop: 0.05
   lifeTime: 20
   touched: 0
 --- !u!212 &1079087107848361867

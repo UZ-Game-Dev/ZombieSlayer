@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bb4b97d374fa6b640bdf0d58ddca420f, type: 3}
   m_Color: {r: 0.5660378, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -132,10 +132,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 25
-  damage: 40
+  damage: 25
   health: 20
-  speed: 2
-  dropList: []
+  speed: 2.2
+  dropList:
+  - {fileID: 2773709356335197714, guid: c9787141f66125b498d5432c0a6d15d3, type: 3}
+  - {fileID: 7993577289538721473, guid: 0f69f1936c4adf947a673cb052a43918, type: 3}
+  - {fileID: 2409944114629765655, guid: 2c575b8028e4ab043991bdef7bb61434, type: 3}
+  - {fileID: 1079087107848361866, guid: aef3aab36e48a3a44bb97869c0fedf91, type: 3}
+  - {fileID: 2409944114629765655, guid: 4d1dff360f3764048be2defff58216d2, type: 3}
 --- !u!212 &1360466128296399188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -419,7 +424,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bb4b97d374fa6b640bdf0d58ddca420f, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
