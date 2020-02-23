@@ -6,18 +6,29 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
+
     public long scoreOverall = 0;
+
     public Text scoreText;
     public Text healthText;
     public Text ammoText;
     public static bool GameOver = false;
 
     public GameObject gameoverUI;
+    [Header("Temp save")]
+    public int health;
+    public int ammo;
+    public int currentWeapon;
+
+    private void Start()
+    {
+        LoadData();
+    }
 
 
     public void setHealth(int health)
     {
-        if (health < 0) 
+        if (health <= 0) 
         {
             if (GameOver)
             {
@@ -82,7 +93,27 @@ public class Main : MonoBehaviour
         Application.Quit();
     }
 
+    public void SaveData()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        health = player.GetComponent<PlayerMovement>().health;
+        ammo = player.GetComponentInChildren<WeaponDef>().ammo;
+        currentWeapon = player.GetComponentInChildren<WeaponMenager>().currentWeapon;
+        FindObjectOfType<SaveData>().setData(health, ammo, scoreOverall, currentWeapon);
+    }
 
+    public void LoadData()
+    {
+        SaveData sd = FindObjectOfType<SaveData>();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerMovement>().health = sd.health;
+        scoreOverall = sd.score;
+        scoreText.text = "Score: " + scoreOverall;
+        player.GetComponentInChildren<WeaponMenager>().ChangeWeapon(sd.currentWeapon);
+        player.GetComponentInChildren<WeaponDef>().ammo = sd.ammo;
+        SetAmmo(sd.ammo);
+    }
 
 
 }
