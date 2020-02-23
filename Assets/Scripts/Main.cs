@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Main : MonoBehaviour
 {
 
-    public long scoreOverall = 0;
+    public int scoreOverall = 0;
 
     public Text scoreText;
     public Text healthText;
