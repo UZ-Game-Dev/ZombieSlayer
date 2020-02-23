@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/menu.unity
+    guid: 280e54c5aa6fcd2489e8a4b6780e702c
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 63c463273fdbd8e4daacca66681db0e8
+  - enabled: 1
+    path: "Assets/Scenes/MainScene \u2014 kopia.unity"
+    guid: bd0635e346a80484b86d7405c66e900d
   m_configObjects: {}
