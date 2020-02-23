@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
+    public long scoreOverall = 0;
+    public Text scoreText;
     public Text healthText;
     public Text ammoText;
     public static bool GameOver = false;
@@ -31,6 +33,11 @@ public class Main : MonoBehaviour
         healthText.text = "Health: " + health;
     }
 
+    public void addScore(int score)
+    {
+        this.scoreOverall += score;
+        scoreText.text = "Score: " + this.scoreOverall;
+    }
     public void SetAmmo(int ammo)
     {
         ammoText.text = "" + ammo;

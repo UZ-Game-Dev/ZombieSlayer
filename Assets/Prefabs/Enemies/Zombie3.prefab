@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bb4b97d374fa6b640bdf0d58ddca420f, type: 3}
   m_Color: {r: 0.5660378, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1360466128296399188}
   - component: {fileID: 7389142019815037762}
   - component: {fileID: 8754578244147655818}
+  - component: {fileID: 1647766235171384653}
   m_Layer: 9
   m_Name: Zombie3
   m_TagString: Untagged
@@ -130,9 +131,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d77bf4b0007c7a49823ac8bf13c7295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  score: 20
+  damage: 20
   health: 15
   speed: 2
+  dropList:
+  - {fileID: 7993577289538721473, guid: 0f69f1936c4adf947a673cb052a43918, type: 3}
+  - {fileID: 2773709356335197714, guid: c9787141f66125b498d5432c0a6d15d3, type: 3}
+  - {fileID: 2409944114629765655, guid: 4d1dff360f3764048be2defff58216d2, type: 3}
+  - {fileID: 1079087107848361866, guid: aef3aab36e48a3a44bb97869c0fedf91, type: 3}
 --- !u!212 &1360466128296399188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -170,7 +177,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 35b04063420bb8d469f9e8480c636aa3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -219,6 +226,25 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.4, y: 1}
   m_Direction: 0
+--- !u!95 &1647766235171384653
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2838826916176962704}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d47eddda6baf5b46991a1c0700e99fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3049840255889466342
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +423,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bb4b97d374fa6b640bdf0d58ddca420f, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
