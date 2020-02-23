@@ -4691,7 +4691,7 @@ MonoBehaviour:
   ExitArrows: {fileID: 15957601}
   VictoryImage: {fileID: 217609555}
   zombieKilled: 0
-  zombieCounter: 10
+  zombieCounter: 1
   zombieCount: 0
   timeBetwSpawn: 1
   enemy: {fileID: 2838826916176962704, guid: e62b523ac888c654f82af3d9e8541ea4, type: 3}
@@ -5759,8 +5759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97956f6c6de922345b6e61830b11c494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  ammo: 999
+  health: 0
+  ammo: 0
   score: 0
   currentWeapon: 0
 --- !u!4 &757802186
@@ -6233,7 +6233,7 @@ MonoBehaviour:
   isShooting: 0
   weaponType: 0
   ammo: 0
-  ammoMax: 999
+  ammoMax: 1000
   firePoint: {fileID: 1565274608}
   bullet: {fileID: 453597298684299663, guid: 75722692fd9367a4d95f0dd757611aa8, type: 3}
   delayBetweenShots: 0.23
@@ -6857,13 +6857,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreOverall: 0
+  health: 0
+  ammo: 0
+  currentWeapon: 0
   scoreText: {fileID: 1105437611}
   healthText: {fileID: 1975226654}
   ammoText: {fileID: 2039598788}
   gameoverUI: {fileID: 912626196}
-  health: 0
-  ammo: 0
-  currentWeapon: 0
 --- !u!4 &1295585998
 Transform:
   m_ObjectHideFlags: 0

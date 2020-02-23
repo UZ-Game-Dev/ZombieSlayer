@@ -15,7 +15,7 @@ public class LoadLevel : MonoBehaviour
         PlayerMovement player = collision.GetComponent<PlayerMovement>();
         if (player != null)
         {
-          
+            main.SaveData();
             StartCoroutine(main.LoadLevelAsync(SceneManager.GetActiveScene().buildIndex+1));
         }
 
