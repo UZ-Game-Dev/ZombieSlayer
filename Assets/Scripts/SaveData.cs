@@ -8,6 +8,7 @@ public class SaveData : MonoBehaviour
     public int ammo;
     public int score;
     public int currentWeapon;
+    public Direction direction;
 
     public static SaveData Instance;
 
@@ -24,12 +25,13 @@ public class SaveData : MonoBehaviour
         }
     }
 
-    public void setData(int health, int ammo, int score, int currentWeapon)
+    public void setData(int health, int ammo, int score, int currentWeapon, Direction direction)
     {
         SaveData.Instance.health = health;
         SaveData.Instance.ammo = ammo;
         SaveData.Instance.score = score;
         SaveData.Instance.currentWeapon = currentWeapon;
+        SaveData.Instance.direction = direction;
     }
 
     public void LoadData()
@@ -39,5 +41,9 @@ public class SaveData : MonoBehaviour
         score = SaveData.Instance.score;
         currentWeapon = SaveData.Instance.currentWeapon;
 
+    }
+    public void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

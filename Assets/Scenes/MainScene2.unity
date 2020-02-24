@@ -4691,10 +4691,10 @@ MonoBehaviour:
   ExitArrows: {fileID: 15957601}
   VictoryImage: {fileID: 217609555}
   zombieKilled: 0
-  zombieCounter: 30
+  zombieCounter: 50
   zombieCount: 0
   timeBetwSpawn: 1
-  enemy: {fileID: 2838826916176962704, guid: be6c78f0eedc07d4ca74f549ccbeec07, type: 3}
+  enemy: {fileID: 2838826916176962704, guid: e62b523ac888c654f82af3d9e8541ea4, type: 3}
   zombies:
   - {fileID: 2094771883}
   - {fileID: 2063340801}

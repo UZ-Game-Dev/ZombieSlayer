@@ -25,20 +25,16 @@ public class ZombieDef : MonoBehaviour
     void Update()
     {
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        //poruszanie sie w strone gracza
-        //transform.position = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
-        moveDirection = Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
-        /*fliper nie działa
-        Debug.Log(moveDirection.x);
-        if (moveDirection.x < 0)
+        //fliper
+        if (playerPos.position.x < transform.position.x)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             GetComponent<SpriteRenderer>().flipX = false;
-        }*/
-        rb.MovePosition(moveDirection);
+        }
+        rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
     }
 
     public void TakeDamage(int damage)

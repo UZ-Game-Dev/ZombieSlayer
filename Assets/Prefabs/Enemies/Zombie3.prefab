@@ -131,10 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d77bf4b0007c7a49823ac8bf13c7295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 20
-  damage: 20
-  health: 15
-  speed: 2
+  score: 50
+  damage: 50
+  health: 25
+  speed: 2.2
   dropList:
   - {fileID: 7993577289538721473, guid: 0f69f1936c4adf947a673cb052a43918, type: 3}
   - {fileID: 2773709356335197714, guid: c9787141f66125b498d5432c0a6d15d3, type: 3}

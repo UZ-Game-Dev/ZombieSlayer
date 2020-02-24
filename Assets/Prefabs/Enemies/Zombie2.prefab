@@ -134,7 +134,7 @@ MonoBehaviour:
   score: 25
   damage: 25
   health: 20
-  speed: 2.2
+  speed: 2
   dropList:
   - {fileID: 2773709356335197714, guid: c9787141f66125b498d5432c0a6d15d3, type: 3}
   - {fileID: 7993577289538721473, guid: 0f69f1936c4adf947a673cb052a43918, type: 3}

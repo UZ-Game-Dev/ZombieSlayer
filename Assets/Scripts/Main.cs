@@ -10,15 +10,19 @@ public class Main : MonoBehaviour
     public int scoreOverall = 0;
 
     public Text scoreText;
+    public Text endScoreText;
     public Text healthText;
     public Text ammoText;
     public static bool GameOver = false;
-
     public GameObject gameoverUI;
+    public Transform[] PlayerSpawnPoints;
+
+
     [Header("Temp save")]
     public int health;
     public int ammo;
     public int currentWeapon;
+    Direction direction;
 
     private void Start()
     {
@@ -28,7 +32,7 @@ public class Main : MonoBehaviour
 
     public void setHealth(int health)
     {
-        if (health <= 0) 
+        if (health <= 0)
         {
             if (GameOver)
             {
@@ -48,6 +52,7 @@ public class Main : MonoBehaviour
     {
         this.scoreOverall += score;
         scoreText.text = "Score: " + this.scoreOverall;
+        endScoreText.text = "" + scoreOverall;
     }
     public void SetAmmo(int ammo)
     {
@@ -85,21 +90,27 @@ public class Main : MonoBehaviour
     public void RetryGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
+        FindObjectOfType<SaveData>().Destroy();
+        SceneManager.LoadScene(1);
     }
     public void QuitGame()
     {
         Debug.Log("QUIT");
         Application.Quit();
     }
+    public void LoadMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+    }
 
-    public void SaveData()
+    public void SaveData(Direction direction)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         health = player.GetComponent<PlayerMovement>().health;
         ammo = player.GetComponentInChildren<WeaponDef>().ammo;
         currentWeapon = player.GetComponentInChildren<WeaponMenager>().currentWeapon;
-        FindObjectOfType<SaveData>().setData(health, ammo, scoreOverall, currentWeapon);
+        FindObjectOfType<SaveData>().setData(health, ammo, scoreOverall, currentWeapon, direction);
     }
 
     public void LoadData()
@@ -113,7 +124,23 @@ public class Main : MonoBehaviour
         player.GetComponentInChildren<WeaponMenager>().ChangeWeapon(sd.currentWeapon);
         player.GetComponentInChildren<WeaponDef>().ammo = sd.ammo;
         SetAmmo(sd.ammo);
+        
+        switch (sd.direction)
+        {
+            case Direction.N:
+                player.transform.position = PlayerSpawnPoints[2].position;
+                break;
+            case Direction.E:
+                player.transform.position = PlayerSpawnPoints[3].position;
+                break;
+            case Direction.S:
+                player.transform.position = PlayerSpawnPoints[0].position;
+                break;
+            case Direction.W:
+                player.transform.position = PlayerSpawnPoints[1].position;
+                break;
+            default:
+                break;
+        }
     }
-
-
 }

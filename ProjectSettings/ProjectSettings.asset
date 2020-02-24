@@ -15,7 +15,7 @@ PlayerSettings:
   companyName: Dev&Games
   productName: ZombieSlayer
   defaultCursor: {fileID: 2800000, guid: b75321d478f4ce54d9fe545dbcda7e94, type: 3}
-  cursorHotspot: {x: 7, y: 16}
+  cursorHotspot: {x: 7, y: 7}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
