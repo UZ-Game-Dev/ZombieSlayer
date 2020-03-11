@@ -144,7 +144,9 @@ MonoBehaviour:
   types: 3
   chanceToDrop: 0.02
   lifeTime: 20
+  timeToPing: 15
   touched: 0
+  timer: 0
 --- !u!212 &2409944114629765652
 SpriteRenderer:
   m_ObjectHideFlags: 0

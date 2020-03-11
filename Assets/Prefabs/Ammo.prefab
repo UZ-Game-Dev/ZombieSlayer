@@ -178,7 +178,9 @@ MonoBehaviour:
   types: 0
   chanceToDrop: 0.08
   lifeTime: 20
+  timeToPing: 15
   touched: 0
+  timer: 0
 --- !u!61 &2773709356335197710
 BoxCollider2D:
   m_ObjectHideFlags: 0
