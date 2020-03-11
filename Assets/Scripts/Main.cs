@@ -34,16 +34,8 @@ public class Main : MonoBehaviour
     {
         if (health <= 0)
         {
-            if (GameOver)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
             health = 0;
-            //StartCoroutine(LoadLevelAsync(SceneManager.GetActiveScene().buildIndex));
+            Pause();
         }
         healthText.text = "Health: " + health;
     }

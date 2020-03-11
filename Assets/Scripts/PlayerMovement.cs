@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed=5f;
     public Rigidbody2D rb;
     public Animator animator;
+    public GameObject pickUP_Sprite;
 
     private Main main;
     private WeaponMenager weaponMenager;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         main = FindObjectOfType<Main>();
         weaponMenager = GetComponentInChildren<WeaponMenager>();
         main.setHealth(health);
+        pickUP_Sprite.SetActive(false);
     }
 
     void Update()
