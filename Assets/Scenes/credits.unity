@@ -237,7 +237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9, y: -169}
+  m_AnchoredPosition: {x: -3, y: -175}
   m_SizeDelta: {x: 319.5, y: 61.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &322561739
@@ -457,7 +457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: 140}
+  m_AnchoredPosition: {x: -2, y: 164}
   m_SizeDelta: {x: 308.1, y: 64.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &349623770
@@ -541,8 +541,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -1, y: 256.5}
-  m_SizeDelta: {x: 685, y: 513.01}
+  m_AnchoredPosition: {x: -1, y: 300.15}
+  m_SizeDelta: {x: 802, y: 600.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624623270
 MonoBehaviour:
@@ -690,8 +690,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: 75}
-  m_SizeDelta: {x: 325, y: 62.5}
+  m_AnchoredPosition: {x: 5, y: 94.6}
+  m_SizeDelta: {x: 325, y: 101.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365428963
 MonoBehaviour:
@@ -724,9 +724,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Szymon Porada
-
-    Sebastian Choroszczak'
+  m_Text: "Szymon Porada\nSebastian Choroszczak\nBartosz Gabryjo\u0142ek"
 --- !u!222 &1365428964
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -770,7 +768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: -230}
+  m_AnchoredPosition: {x: -5, y: -252}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1647705435
@@ -974,7 +972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 190}
+  m_AnchoredPosition: {x: -1, y: 238}
   m_SizeDelta: {x: 308.1, y: 64.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1909104232

@@ -9,6 +9,8 @@ public class ZombieDef : MonoBehaviour
     public int health;
     public float speed;
     public GameObject[] dropList;
+    
+    public bool canDrop = false;
 
     Vector2 moveDirection;
     private Transform playerPos;
@@ -51,16 +53,18 @@ public class ZombieDef : MonoBehaviour
 
     public void Drop() 
     {
-        //leci przez cala liste i sprawdza czy dropnie
-        for (int i = 0; i < dropList.Length; i++)
+        if (canDrop)
         {
-            float rand = Random.Range(0f, 1f);
-            if (rand < dropList[i].GetComponent<Item>().chanceToDrop) //pobiera chanceToDrop z dziedziczonej klasy GunDefinition dla każdego GO z listy, zajebiscie
+            //leci przez cala liste i sprawdza czy dropnie
+            for (int i = 0; i < dropList.Length; i++)
             {
-                Instantiate(dropList[i], transform.position, Quaternion.identity);
-                break;
+                float rand = Random.Range(0f, 1f);
+                if (rand < dropList[i].GetComponent<Item>().chanceToDrop) //pobiera chanceToDrop z dziedziczonej klasy GunDefinition dla każdego GO z listy, zajebiscie
+                {
+                    Instantiate(dropList[i], transform.position, Quaternion.identity);
+                    break;
+                }
             }
         }
     }
-
 }
