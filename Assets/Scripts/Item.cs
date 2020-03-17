@@ -17,14 +17,31 @@ public class Item : MonoBehaviour
     public Types types;
     public float chanceToDrop;
     public float lifeTime;
+    public float timeToPing;
 
     public bool touched;
+    public float timer = 0;
     private PlayerMovement player;
     private Collider2D collision;
-
+    private Renderer render;
+    private void Start()
+    {
+        render = GetComponent<Renderer>();
+    }
     void Update()
     {
-        Destroy(this.gameObject, lifeTime);
+        //Destroy(this.gameObject, lifeTime);
+
+        timer += Time.fixedDeltaTime;
+        if (timer >= lifeTime)
+        {
+            Destroy(this.gameObject);
+        }
+        if (timer >= timeToPing)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time * 4, 1f));
+        }
+        
 
         if (touched && Input.GetButtonDown("Use"))
         {
@@ -39,6 +56,7 @@ public class Item : MonoBehaviour
         {
             collision = coll;
             touched = true;
+            player.pickUP_Sprite.SetActive(true);
         }    
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -46,8 +64,10 @@ public class Item : MonoBehaviour
         if (touched)
         {
             touched = false;
+            player.pickUP_Sprite.SetActive(false);
         }
     }
+
 }
 /*
 public class Inventory
