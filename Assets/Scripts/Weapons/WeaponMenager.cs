@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponMenager : MonoBehaviour
 {
+    public Text WeaponName;
     public List<GameObject> weapon;
     public int currentWeapon;
     private void Start()
     {
-        weapon[0].SetActive(true);
+       
         for (int i = 1; i < weapon.Capacity; i++) { weapon[i].SetActive(false); } //wylacza reszte broni
-        currentWeapon = 0;
+        ChangeWeapon(0);
     }
 
     public void ChangeWeapon(int nr)
@@ -18,5 +20,24 @@ public class WeaponMenager : MonoBehaviour
         weapon[currentWeapon].SetActive(false);
         weapon[nr].SetActive(true);
         currentWeapon = nr;
-    }
+        switch (nr)
+        {
+            case 0:
+                WeaponName.text = "AK-47";
+                break;
+
+            case 1:
+                WeaponName.text = "M4";
+                break;
+            case 2:
+                WeaponName.text = "Shotgun";
+                break;
+            case 3:
+                WeaponName.text = "SMG";
+                break;
+        }
+
+
+
+        }
 }

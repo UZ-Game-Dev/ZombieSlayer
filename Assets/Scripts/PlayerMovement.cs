@@ -32,6 +32,14 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        if (invulnerable)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color (1f/(Mathf.PingPong(Time.time * 4, 0.9f)+0.1f), Mathf.PingPong(Time.time * 4, 1f), Mathf.PingPong(Time.time * 4, 1f), 1f);
+        }
+        if (!invulnerable )
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 255f);
+        }
     }
 
     void FixedUpdate()
@@ -79,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
         }
         yield return new WaitForSeconds(InvAfterDmg); //przez jakis czas niesmiertelnosc
         invulnerable = false;
+    
     }
 
     public void Pickup(Types types, GameObject pickup)
