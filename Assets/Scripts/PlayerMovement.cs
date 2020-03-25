@@ -100,14 +100,9 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("AK");
                     break;
                 }
-                else if(GetComponentInChildren<WeaponDef>().ammo == GetComponentInChildren<WeaponDef>().ammoMax)
-                {
-                    Debug.Log("Full ammo!");
-                    break;
-                }
                 else
                 {
-                    GetComponentInChildren<WeaponDef>().RefilAmmo();
+                    GetComponentInChildren<WeaponDef>().AddAmmo();
                     Destroy(pickup);
                 }
                 break;
