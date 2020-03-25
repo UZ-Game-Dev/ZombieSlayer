@@ -10,7 +10,7 @@ public class WeaponDef : MonoBehaviour
     [Header("Definiowanie Dynamiczne")]
     public WeaponType weaponType;
     public int ammo;
-    public int ammoMax;
+    public int ammoPickup;
     public Transform firePoint;
     public GameObject bullet;
     public float delayBetweenShots;
@@ -28,7 +28,7 @@ public class WeaponDef : MonoBehaviour
     {
         main = FindObjectOfType<Main>();
         isShooting = false;
-        RefilAmmo();
+        main.SetAmmo(ammo);
     }
     private void Update()
     {
@@ -38,6 +38,7 @@ public class WeaponDef : MonoBehaviour
             if(weaponType != 0 && ammo <= 0) //zmiana na AK jak skonczy sie ammo
             {
                 FindObjectOfType<WeaponMenager>().ChangeWeapon(0);
+                FindObjectOfType<WeaponMenager>().weaponPickedUp = false;
             }
         }
     }
@@ -62,9 +63,9 @@ public class WeaponDef : MonoBehaviour
         isShooting = false;
     }
 
-    public void RefilAmmo()
+    public void AddAmmo()
     {
-        ammo = ammoMax;
+        ammo += ammoPickup;
         main.SetAmmo(ammo);
     }
 }

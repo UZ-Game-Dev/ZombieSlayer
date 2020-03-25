@@ -19,6 +19,7 @@ public class WeaponPickup : MonoBehaviour
     {
         if (touched && Input.GetButtonDown("Use"))
         {
+            weaponMenager.weaponPickedUp = true;
             if (weaponMenager.currentWeapon != weaponNumber)
             {
                 weaponMenager.ChangeWeapon(weaponNumber);
@@ -26,18 +27,14 @@ public class WeaponPickup : MonoBehaviour
             }
             else
             {
-                //refil ammo
+                //add ammo
                 if (weaponMenager.currentWeapon == 0)
                 {
                     Debug.Log("AK");
                 }
-                else if (player.GetComponentInChildren<WeaponDef>().ammo == player.GetComponentInChildren<WeaponDef>().ammoMax)
-                {
-                    Debug.Log("Full ammo!");
-                }
                 else
                 {
-                    player.GetComponentInChildren<WeaponDef>().RefilAmmo();
+                    player.GetComponentInChildren<WeaponDef>().AddAmmo();
                     Destroy(gameObject);
                 }
             }

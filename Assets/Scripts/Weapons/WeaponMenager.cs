@@ -8,13 +8,14 @@ public class WeaponMenager : MonoBehaviour
     public Text WeaponName;
     public List<GameObject> weapon;
     public int currentWeapon;
+    public int secondaryWeapon;
+    public bool weaponPickedUp = false;
     private void Start()
     {
-       
+        currentWeapon = 0;
         for (int i = 1; i < weapon.Capacity; i++) { weapon[i].SetActive(false); } //wylacza reszte broni
         ChangeWeapon(0);
     }
-
     public void ChangeWeapon(int nr)
     {
         weapon[currentWeapon].SetActive(false);
