@@ -18,8 +18,12 @@ public class ZombieSpawner : MonoBehaviour
     public GameObject enemy;
     public Transform[] zombies = new Transform[4];
     public bool spawning = false;
+
+    private AudioSource source;
+
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         spawning = false;
         ExitArrows.SetActive(false);
 

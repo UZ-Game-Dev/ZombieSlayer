@@ -15,11 +15,14 @@ public class WeaponDef : MonoBehaviour
     public GameObject bullet;
     public float delayBetweenShots;
 
+    private AudioSource source;
     private Main main;
 
+    public AudioSource Source { get => source; set => source = value; }
 
     private void Start()
     {
+        Source = GetComponent<AudioSource>();
         isShooting = false;
         main = FindObjectOfType<Main>();
     }
@@ -34,12 +37,14 @@ public class WeaponDef : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && !isShooting && Time.timeScale != 0)
         {
+            source.Play();
             StartCoroutine(ShootOrder());
             if(weaponType != 0 && ammo <= 0) //zmiana na AK jak skonczy sie ammo
             {
                 FindObjectOfType<WeaponMenager>().ChangeWeapon(0);
                 FindObjectOfType<WeaponMenager>().weaponPickedUp = false;
             }
+
         }
     }
     IEnumerator ShootOrder()
@@ -67,6 +72,7 @@ public class WeaponDef : MonoBehaviour
     {
         ammo += ammoPickup;
         main.SetAmmo(ammo);
+
     }
 }
 

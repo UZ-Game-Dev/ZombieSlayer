@@ -11,8 +11,12 @@ public class WeaponPickup : MonoBehaviour
     private PlayerMovement player;
     private Collider2D collision;
 
+    private AudioSource source;
+
+
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         player = FindObjectOfType<PlayerMovement>();
     }
     private void Update()
@@ -24,6 +28,7 @@ public class WeaponPickup : MonoBehaviour
             {
                 weaponMenager.ChangeWeapon(weaponNumber);
                 Destroy(gameObject);
+              
             }
             else
             {
@@ -38,6 +43,7 @@ public class WeaponPickup : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+            source.Play();
         }
     }
 

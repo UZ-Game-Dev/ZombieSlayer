@@ -18,14 +18,20 @@ public class Item : MonoBehaviour
     public float chanceToDrop;
     public float lifeTime;
     public float timeToPing;
-
+    
     public bool touched;
     public float timer = 0;
     private PlayerMovement player;
     private Collider2D collision;
     private Renderer render;
+
+    private AudioSource source;
+
+    
+
     private void Start()
     {
+        source = GetComponent<AudioSource>();
         render = GetComponent<Renderer>();
     }
     void Update()
@@ -46,6 +52,8 @@ public class Item : MonoBehaviour
         if (touched && Input.GetButtonDown("Use"))
         {
             player.Pickup(types, gameObject);
+            source.Play();
+
         }
     }
 

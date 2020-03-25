@@ -16,8 +16,12 @@ public class ZombieDef : MonoBehaviour
     private Transform playerPos;
     private ZombieSpawner sp;
     private Rigidbody2D rb;
+
+    private AudioSource source;
+
     void Start()
     {
+        source = GetComponent<AudioSource>();
         main = FindObjectOfType<Main>();
         sp = FindObjectOfType<ZombieSpawner>();
         rb = GetComponent<Rigidbody2D>();
@@ -48,6 +52,8 @@ public class ZombieDef : MonoBehaviour
             sp.zombieKilled++;
             Drop();
             Destroy(gameObject);
+            source.Play();
+
         }
     }
 

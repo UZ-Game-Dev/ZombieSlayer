@@ -18,10 +18,13 @@ public class PlayerMovement : MonoBehaviour
     private WeaponMenager weaponMenager;
     public bool invulnerable = false;
 
+    private AudioSource source;
+
     Vector2 movement;
 
     void Start()
     {
+        source = GetComponent<AudioSource>();
         main = FindObjectOfType<Main>();
         weaponMenager = GetComponentInChildren<WeaponMenager>();
         main.setHealth(health);
@@ -92,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Pickup(Types types, GameObject pickup)
     {
+        source.Play();
         switch (types)
         {
             case Types.Ammunition:
@@ -104,9 +108,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     GetComponentInChildren<WeaponDef>().AddAmmo();
                     Destroy(pickup);
+                    
                 }
                 break;
             case Types.Bandages:
+       
                 health += HealthPickup;
                 main.setHealth(health);
                 Destroy(pickup);
