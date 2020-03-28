@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool GamePaused = false;
-
+    private PlayerMovement sp;
     public GameObject pasueMenuUI;
 
     // Update is called once per frame
+    void Start()
+    {
+        sp = FindObjectOfType<PlayerMovement>();
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -30,6 +34,12 @@ public class PauseMenu : MonoBehaviour
         pasueMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
+        if (sp.health <= 0)
+        {
+
+            Time.timeScale = 0f;
+
+        }
     }
 
     void Pause()
