@@ -27,6 +27,7 @@ public class WeaponPickup : MonoBehaviour
             if (weaponMenager.currentWeapon != weaponNumber)
             {
                 weaponMenager.ChangeWeapon(weaponNumber);
+                source.Play();
                 Destroy(gameObject);
               
             }

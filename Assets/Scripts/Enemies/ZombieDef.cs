@@ -46,15 +46,16 @@ public class ZombieDef : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        source.Play();
         if (health <= 0)
         {
             main.addScore(score);
             sp.zombieKilled++;
             Drop();
             Destroy(gameObject);
-            source.Play();
 
         }
+     
     }
 
     public void Drop() 
