@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public int HealthPickup;
     public float InvAfterDmg;
     public float moveSpeed=5f;
+    private int iterator;
+    private int wDupe;
     public Rigidbody2D rb;
     public Animator animator;
     public GameObject pickUP_Sprite;
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (iterator != wDupe) source.Play();
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         if (invulnerable)
@@ -96,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
     public void Pickup(Types types, GameObject pickup)
     {
         source.Play();
+        
         switch (types)
         {
             case Types.Ammunition:

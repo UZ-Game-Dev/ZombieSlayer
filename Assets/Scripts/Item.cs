@@ -51,6 +51,7 @@ public class Item : MonoBehaviour
 
         if (touched && Input.GetButtonDown("Use"))
         {
+            
             player.Pickup(types, gameObject);
             source.Play();
 

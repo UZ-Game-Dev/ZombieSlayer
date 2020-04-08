@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[RequireComponent(typeof(AudioSource))]
 public class ZombieDef : MonoBehaviour
 {
     public int score;
@@ -8,6 +9,8 @@ public class ZombieDef : MonoBehaviour
     public int damage;
     public int health;
     public float speed;
+    private int killed=0;
+    private int buff = 0;
     public GameObject[] dropList;
     
     public bool canDrop = false;
@@ -16,16 +19,22 @@ public class ZombieDef : MonoBehaviour
     private Transform playerPos;
     private ZombieSpawner sp;
     private Rigidbody2D rb;
-
     private AudioSource source;
+    public AudioClip clip;
+    private WeaponMenager weaponMenager;
+
 
     void Start()
     {
-        source = GetComponent<AudioSource>();
+        
         main = FindObjectOfType<Main>();
         sp = FindObjectOfType<ZombieSpawner>();
         rb = GetComponent<Rigidbody2D>();
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+       /* GameObject gameObject = GameObject.FindWithTag("Player");
+        playerPos = gameObject.GetComponent<Transform>();
+        weaponMenager = gameObject.GetComponentInChildren<WeaponMenager>(); */
+
     }
 
     void Update()
@@ -41,22 +50,27 @@ public class ZombieDef : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = false;
         }
         rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
+
+        if (buff != killed) source.Play();
     }
 
     public void TakeDamage(int damage)
     {
+       
         health -= damage;
-        source.Play();
-        if (health <= 0)
+        if (health<=0)
         {
+            
             main.addScore(score);
             sp.zombieKilled++;
             Drop();
             Destroy(gameObject);
-
+            source.Play();
         }
-     
+        
     }
+
+ 
 
     public void Drop() 
     {

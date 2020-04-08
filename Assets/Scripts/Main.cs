@@ -17,7 +17,6 @@ public class Main : MonoBehaviour
     public GameObject gameoverUI;
     public Transform[] PlayerSpawnPoints;
 
-
     [Header("Temp save")]
     public int health;
     public int ammo;
@@ -45,6 +44,7 @@ public class Main : MonoBehaviour
         this.scoreOverall += score;
         scoreText.text = "Score: " + this.scoreOverall;
         endScoreText.text = "" + scoreOverall;
+        
     }
     public void SetAmmo(int ammo)
     {
