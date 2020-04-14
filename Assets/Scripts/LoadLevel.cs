@@ -27,7 +27,7 @@ public class LoadLevel : MonoBehaviour
         if (player != null)
         {
             main.SaveData(direction);
-            if (SceneManager.GetActiveScene().buildIndex == 4)
+            if (SceneManager.GetActiveScene().buildIndex == 8)
             {
                 StartCoroutine(main.LoadLevelAsync(1));
             }
