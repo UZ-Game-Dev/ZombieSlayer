@@ -53,7 +53,7 @@ public class Item : MonoBehaviour
         {
             
             player.Pickup(types, gameObject);
-            source.Play();
+            
 
         }
     }

@@ -9,18 +9,15 @@ public class ZombieDef : MonoBehaviour
     public int damage;
     public int health;
     public float speed;
-    private int killed=0;
-    private int buff = 0;
     public GameObject[] dropList;
     
     public bool canDrop = false;
-
     Vector2 moveDirection;
     private Transform playerPos;
     private ZombieSpawner sp;
     private Rigidbody2D rb;
     private AudioSource source;
-    public AudioClip clip;
+    
     private WeaponMenager weaponMenager;
 
 
@@ -51,26 +48,23 @@ public class ZombieDef : MonoBehaviour
         }
         rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
 
-        if (buff != killed) source.Play();
+        
     }
 
     public void TakeDamage(int damage)
     {
-       
+        
         health -= damage;
         if (health<=0)
         {
-            
+            sp.playSound();
             main.addScore(score);
             sp.zombieKilled++;
             Drop();
-            Destroy(gameObject);
-            source.Play();
+            Destroy(this.gameObject);
         }
         
     }
-
- 
 
     public void Drop() 
     {

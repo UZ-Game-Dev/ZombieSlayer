@@ -23,11 +23,11 @@ public class WeaponPickup : MonoBehaviour
     {
         if (touched && Input.GetButtonDown("Use"))
         {
+            player.playSound();
             weaponMenager.weaponPickedUp = true;
             if (weaponMenager.currentWeapon != weaponNumber)
             {
                 weaponMenager.ChangeWeapon(weaponNumber);
-                source.Play();
                 Destroy(gameObject);
               
             }
@@ -43,8 +43,7 @@ public class WeaponPickup : MonoBehaviour
                     player.GetComponentInChildren<WeaponDef>().AddAmmo();
                     Destroy(gameObject);
                 }
-            }
-            source.Play();
+            }           
         }
     }
 

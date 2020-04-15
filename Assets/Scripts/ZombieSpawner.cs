@@ -13,6 +13,7 @@ public class ZombieSpawner : MonoBehaviour
     public GameObject VictoryImage;
     public int zombieKilled=0;
     public int zombieCounter;
+    public int zombieCounterFromBefore;
     public int zombieCount;
     public float timeBetwSpawn;
     public GameObject enemy;
@@ -48,6 +49,10 @@ public class ZombieSpawner : MonoBehaviour
             VictoryImage.SetActive(true);
 
         }
+    }
+    public void playSound()
+    {
+        source.Play();
     }
     IEnumerator SpawnOrder()
     {

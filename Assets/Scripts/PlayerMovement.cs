@@ -73,6 +73,11 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
+    public void playSound()
+    {
+        source.Play();
+    }
+
     public void TakeDamage(int damage)
     {
         if (!invulnerable)
