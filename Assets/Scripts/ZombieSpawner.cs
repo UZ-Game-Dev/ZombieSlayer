@@ -66,8 +66,4 @@ public class ZombieSpawner : MonoBehaviour
         yield return new WaitForSeconds(timeBetwSpawn);
     }
 
-    
-    
-       
-    
 }
