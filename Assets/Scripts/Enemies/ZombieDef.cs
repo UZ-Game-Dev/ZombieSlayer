@@ -12,13 +12,16 @@ public class ZombieDef : MonoBehaviour
     public GameObject[] dropList;
     
     public bool canDrop = false;
+
+    public bool frozen = false;
+    public bool scared = false;
+
     Vector2 moveDirection;
     private Transform playerPos;
     private ZombieSpawner sp;
     private Rigidbody2D rb;
     private AudioSource source;
-    
-    private WeaponMenager weaponMenager;
+
 
 
     void Start()
@@ -28,27 +31,53 @@ public class ZombieDef : MonoBehaviour
         sp = FindObjectOfType<ZombieSpawner>();
         rb = GetComponent<Rigidbody2D>();
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
-       /* GameObject gameObject = GameObject.FindWithTag("Player");
-        playerPos = gameObject.GetComponent<Transform>();
-        weaponMenager = gameObject.GetComponentInChildren<WeaponMenager>(); */
-
     }
 
     void Update()
     {
+        //big flipper
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        //fliper
-        if (playerPos.position.x < transform.position.x)
+        if (frozen)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            
+        }
+        else if (scared)
+        {
+            if (playerPos.position.x < transform.position.x)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
         else
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            //fliper
+            if (playerPos.position.x < transform.position.x)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
-        rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
 
-        
+
+        if (frozen)
+        {
+
+        }
+        else if (scared)
+        {
+            rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position + (transform.position - playerPos.position), speed * Time.deltaTime));
+        }
+        else
+        {
+            rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
+        }
     }
 
     public void TakeDamage(int damage)
@@ -81,5 +110,31 @@ public class ZombieDef : MonoBehaviour
                 }
             }
         }
+    }
+    public void getCold(float time)
+    {
+        StartCoroutine(freeze(time));
+    }
+    IEnumerator freeze(float time)
+    {
+        frozen = true;
+        GetComponent<Animator>().enabled = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponent<SpriteRenderer>().color = new Color(0f, 180f, 255f, 255f);
+        yield return new WaitForSeconds(time);
+        GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 255f);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        GetComponent<Animator>().enabled = true;
+        frozen = false;
+    }
+    public void getSpooky(float time)
+    {       
+        StartCoroutine(scare(time));
+    }
+    IEnumerator scare(float time)
+    {
+        scared = true;
+        yield return new WaitForSeconds(time);
+        scared = false;
     }
 }

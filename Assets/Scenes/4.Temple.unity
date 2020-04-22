@@ -9267,7 +9267,15 @@ MonoBehaviour:
   - {fileID: 2409944114629765655, guid: 2c575b8028e4ab043991bdef7bb61434, type: 3}
   - {fileID: 2409944114629765655, guid: 4d1dff360f3764048be2defff58216d2, type: 3}
   - {fileID: 1079087107848361866, guid: aef3aab36e48a3a44bb97869c0fedf91, type: 3}
+  - {fileID: 7743080744013945251, guid: 17fbaee80ab89b846952e43c15869786, type: 3}
+  - {fileID: 2055689276920872936, guid: dde3986a6f26f4f4b94609e1782f80a4, type: 3}
+  - {fileID: 600265749494353546, guid: a5235c3f5a6503a42a5f82305ef14540, type: 3}
+  - {fileID: 1535490143854660892, guid: 41ff1688b0f4c7443852b1bd2e5abd49, type: 3}
+  - {fileID: 5565194069300199680, guid: 6d86ae683aa49f14084854aa225126aa, type: 3}
+  - {fileID: 9211980834492530106, guid: 99bcc84d8321eb94195e7ed29ba80eca, type: 3}
   canDrop: 0
+  frozen: 0
+  scared: 0
 --- !u!4 &145073168
 Transform:
   m_ObjectHideFlags: 0
@@ -14239,6 +14247,8 @@ MonoBehaviour:
   ammoPickup: 60
   firePoint: {fileID: 1419424529}
   bullet: {fileID: 453597298684299663, guid: 75722692fd9367a4d95f0dd757611aa8, type: 3}
+  goldBullet: {fileID: 0}
+  shotingGold: 0
   delayBetweenShots: 0.15
 --- !u!212 &338582021
 SpriteRenderer:
@@ -23894,7 +23904,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709975546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40, y: -10, z: 0}
+  m_LocalPosition: {x: -100, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 145073168}
@@ -24205,6 +24215,8 @@ MonoBehaviour:
   ammoPickup: 45
   firePoint: {fileID: 2100179791}
   bullet: {fileID: 453597298684299663, guid: 1e93e419011f2eb4caf08847f19b502e, type: 3}
+  goldBullet: {fileID: 0}
+  shotingGold: 0
   delayBetweenShots: 0.1
 --- !u!212 &768226179
 SpriteRenderer:
@@ -24776,6 +24788,8 @@ MonoBehaviour:
   ammoPickup: 0
   firePoint: {fileID: 1565274608}
   bullet: {fileID: 453597298684299663, guid: 75722692fd9367a4d95f0dd757611aa8, type: 3}
+  goldBullet: {fileID: 0}
+  shotingGold: 0
   delayBetweenShots: 0.23
 --- !u!212 &853311525
 SpriteRenderer:
@@ -32242,6 +32256,17 @@ MonoBehaviour:
   animator: {fileID: 1668914119}
   pickUP_Sprite: {fileID: 900936199}
   invulnerable: 0
+  invulnerable_PU: 0
+  GoldBullets_Time: 10
+  inv_Time: 10
+  speed_Time: 10
+  speed_Value: 5
+  nuke_range: 20
+  nuke_dmg: 9999
+  freeze_Time: 10
+  freeze_range: 20
+  scare_Time: 10
+  scare_range: 20
 --- !u!70 &1668914122
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -32600,6 +32625,8 @@ MonoBehaviour:
   ammoPickup: 20
   firePoint: {fileID: 301476001}
   bullet: {fileID: 877596795537144522, guid: a59820900e19510458bc5d91189d0a02, type: 3}
+  goldBullet: {fileID: 0}
+  shotingGold: 0
   delayBetweenShots: 0.9
 --- !u!82 &1722082281
 AudioSource:
