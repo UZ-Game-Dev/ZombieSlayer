@@ -9,7 +9,13 @@ public enum Types
     Coin,
     M4,
     Shotgun,
-    SMG
+    SMG,
+    GoldBullets_PU,
+    Inv_PU,
+    Speed_PU,
+    Nuke_PU,
+    Freeze_PU,
+    Scare_PU
 }
 
 public class Item : MonoBehaviour

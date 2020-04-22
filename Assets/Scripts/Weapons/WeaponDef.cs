@@ -13,6 +13,8 @@ public class WeaponDef : MonoBehaviour
     public int ammoPickup;
     public Transform firePoint;
     public GameObject bullet;
+    public GameObject goldBullet;
+    public bool shotingGold = false;
     public float delayBetweenShots;
 
     private AudioSource source;
@@ -55,7 +57,14 @@ public class WeaponDef : MonoBehaviour
     }
     IEnumerator Shoot()
     {
-        Instantiate(bullet, firePoint.position, transform.rotation);
+        if (shotingGold)
+        {
+            Instantiate(goldBullet, firePoint.position, transform.rotation);
+        }
+        else
+        {
+            Instantiate(bullet, firePoint.position, transform.rotation);
+        }
         if (weaponType != WeaponType.AK) //jeśli nie AK to odejmuje ammo
         { 
             ammo--;

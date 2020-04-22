@@ -19,8 +19,21 @@ public class PlayerMovement : MonoBehaviour
     private Main main;
     private WeaponMenager weaponMenager;
     public bool invulnerable = false;
+    public bool invulnerable_PU = false;
 
     private AudioSource source;
+
+    [Header("Power Ups")]
+    public float GoldBullets_Time;
+    public float inv_Time;
+    public float speed_Time;
+    public float speed_Value;
+    public float nuke_range;
+    public int nuke_dmg;
+    public float freeze_Time;
+    public float freeze_range;
+    public float scare_Time;
+    public float scare_range;
 
     Vector2 movement;
 
@@ -80,9 +93,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (!invulnerable)
+        if (!invulnerable_PU)
         {
-            StartCoroutine(takingDamage(damage));
+            if (!invulnerable)
+            {
+                StartCoroutine(takingDamage(damage));
+            }
         }
     }
     IEnumerator takingDamage(int damage)
@@ -129,9 +145,96 @@ public class PlayerMovement : MonoBehaviour
             case Types.Coin:
                 //może kiedyś?
                 break;
+            case Types.GoldBullets_PU:
+                StartCoroutine(ShotingGold(GoldBullets_Time));
+                Destroy(pickup);
+                break;
+            case Types.Inv_PU:
+                StartCoroutine(Inv(inv_Time));
+                Destroy(pickup);
+                break;
+            case Types.Speed_PU:
+                StartCoroutine(Speed(speed_Time, speed_Value));
+                Destroy(pickup);
+                break;
+            case Types.Nuke_PU:
+                Nuke(nuke_range, nuke_dmg);
+                Destroy(pickup);
+                break;
+            case Types.Freeze_PU:
+                StartCoroutine(Freeze(freeze_Time, freeze_range));
+                Destroy(pickup);
+                break;
+            case Types.Scare_PU:
+                StartCoroutine(Scare(scare_Time, scare_range));
+                Destroy(pickup);
+                break;
             default:
                 break;
         }
     }
 
+    IEnumerator ShotingGold(float x)
+    {
+        GetComponentInChildren<WeaponDef>().shotingGold = true;
+        yield return new WaitForSeconds(x);
+        GetComponentInChildren<WeaponDef>().shotingGold = false;
+    }
+    IEnumerator Inv(float time)
+    {
+        invulnerable_PU = true;
+        GetComponent<SpriteRenderer>().color = new Color(0f, 200f, 255f, 255f);
+        yield return new WaitForSeconds(time);
+        GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 255f);
+        invulnerable_PU = false;
+    }
+    IEnumerator Speed(float time, float speed)
+    {
+        float oldSpeed = moveSpeed;
+        moveSpeed = speed;
+        //animacje chyba blokuja zmiane coloru?
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 210f, 0f, 255f);
+        yield return new WaitForSeconds(time);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 255f);
+        moveSpeed = oldSpeed;
+    }
+    private void Nuke(float range, int damage)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, range);
+        foreach (Collider2D nearbyObject in colliders)
+        {
+            ZombieDef zombie = nearbyObject.transform.GetComponent<ZombieDef>();
+            if (zombie != null)
+            {
+                zombie.TakeDamage(damage);
+            }
+        }
+    }
+    IEnumerator Freeze(float time, float range)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, range);
+        foreach (Collider2D nearbyObject in colliders)
+        {
+            ZombieDef zombie = nearbyObject.transform.GetComponent<ZombieDef>();
+            if (zombie != null)
+            {
+                zombie.getCold(scare_Time);
+            }
+        }
+        yield return new WaitForSeconds(time);
+    }
+    IEnumerator Scare(float time, float range)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, range);
+        foreach (Collider2D nearbyObject in colliders)
+        {
+            ZombieDef zombie = nearbyObject.transform.GetComponent<ZombieDef>();
+            if (zombie != null)
+            {
+                zombie.getSpooky(time);
+            }
+        }
+        yield return new WaitForSeconds(time);
+
+    }
 }
