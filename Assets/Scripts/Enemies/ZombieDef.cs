@@ -4,13 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class ZombieDef : MonoBehaviour
 {
+  
     public int score;
     private Main main;
     public int damage;
     public int health;
     public float speed;
     public GameObject[] dropList;
-    
     public bool canDrop = false;
 
     public bool frozen = false;
@@ -21,12 +21,12 @@ public class ZombieDef : MonoBehaviour
     private ZombieSpawner sp;
     private Rigidbody2D rb;
     private AudioSource source;
-
+    private WeaponMenager weaponmenager;
 
 
     void Start()
     {
-        
+        weaponmenager = GameObject.FindWithTag("Player").GetComponentInChildren<WeaponMenager>();
         main = FindObjectOfType<Main>();
         sp = FindObjectOfType<ZombieSpawner>();
         rb = GetComponent<Rigidbody2D>();
@@ -99,14 +99,29 @@ public class ZombieDef : MonoBehaviour
     {
         if (canDrop)
         {
-            //leci przez cala liste i sprawdza czy dropnie
-            for (int i = 0; i < dropList.Length; i++)
-            {
-                float rand = Random.Range(0f, 1f);
-                if (rand < dropList[i].GetComponent<Item>().chanceToDrop) //pobiera chanceToDrop z dziedziczonej klasy GunDefinition dla każdego GO z listy, zajebiscie
+            if (weaponmenager.currentWeapon != 0)
+            {    //leci przez cala liste i sprawdza czy dropnie
+                for (int i = 0; i < dropList.Length; i++)
                 {
-                    Instantiate(dropList[i], transform.position, Quaternion.identity);
-                    break;
+                    float rand = Random.Range(0f, 1f);
+                    if (rand < dropList[i].GetComponent<Item>().chanceToDrop) //pobiera chanceToDrop z dziedziczonej klasy GunDefinition dla każdego GO z listy, zajebiscie
+                    {
+                        Instantiate(dropList[i], transform.position, Quaternion.identity);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("nie ma ammo");
+                for (int i = 1; i < dropList.Length; i++)
+                {
+                    float rand = Random.Range(0f, 1f);
+                    if (rand < dropList[i].GetComponent<Item>().chanceToDrop) //pobiera chanceToDrop z dziedziczonej klasy GunDefinition dla każdego GO z listy, zajebiscie
+                    {
+                        Instantiate(dropList[i], transform.position, Quaternion.identity);
+                        break;
+                    }
                 }
             }
         }
