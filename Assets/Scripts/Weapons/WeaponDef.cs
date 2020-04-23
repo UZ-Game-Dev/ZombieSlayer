@@ -9,6 +9,7 @@ public class WeaponDef : MonoBehaviour
     public bool isShooting = false;
     [Header("Definiowanie Dynamiczne")]
     public WeaponType weaponType;
+    public int startingAmmo;
     public int ammo;
     public int ammoPickup;
     public Transform firePoint;
@@ -33,6 +34,7 @@ public class WeaponDef : MonoBehaviour
     {
         main = FindObjectOfType<Main>();
         isShooting = false;
+        ResetAmmo();
         main.SetAmmo(ammo);
     }
     private void Update()
@@ -82,6 +84,10 @@ public class WeaponDef : MonoBehaviour
         ammo += ammoPickup;
         main.SetAmmo(ammo);
 
+    }
+    public void ResetAmmo()
+    {
+        ammo = startingAmmo;
     }
 }
 

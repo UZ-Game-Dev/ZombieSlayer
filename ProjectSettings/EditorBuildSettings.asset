@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/8.Back to beach.unity
     guid: 706614233dfbb7b4cb83672de6db6705
+  - enabled: 1
+    path: Assets/Scenes/credits.unity
+    guid: 3ff9a1cbdcb1a524b9752083267b2144
   m_configObjects: {}

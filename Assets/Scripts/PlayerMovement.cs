@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public GameObject pickUP_Sprite;
+    public GameObject shield_sprite;
 
     private Main main;
     private WeaponMenager weaponMenager;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public bool invulnerable_PU = false;
 
     private AudioSource source;
+    private float oldSpeed = 0;
 
     [Header("Power Ups")]
     public float GoldBullets_Time;
@@ -34,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public float freeze_range;
     public float scare_Time;
     public float scare_range;
+    public int goldValue;
 
     Vector2 movement;
 
@@ -142,8 +145,9 @@ public class PlayerMovement : MonoBehaviour
                 main.setHealth(health);
                 Destroy(pickup);
                 break;
-            case Types.Coin:
-                //może kiedyś?
+            case Types.Gold:
+                main.addScore(goldValue);
+                Destroy(pickup);
                 break;
             case Types.GoldBullets_PU:
                 StartCoroutine(ShotingGold(GoldBullets_Time));
@@ -183,14 +187,14 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Inv(float time)
     {
         invulnerable_PU = true;
-        GetComponent<SpriteRenderer>().color = new Color(0f, 200f, 255f, 255f);
+        shield_sprite.SetActive(true);
         yield return new WaitForSeconds(time);
-        GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 255f);
+        shield_sprite.SetActive(false);
         invulnerable_PU = false;
     }
     IEnumerator Speed(float time, float speed)
     {
-        float oldSpeed = moveSpeed;
+        oldSpeed = moveSpeed;
         moveSpeed = speed;
         //animacje chyba blokuja zmiane coloru?
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 210f, 0f, 255f);

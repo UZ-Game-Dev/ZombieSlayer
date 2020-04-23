@@ -45,13 +45,13 @@ public class Main : MonoBehaviour
             health = 0;
             Pause();
         }
-        healthText.text = "Health: " + health;
+        healthText.text = "" + health;
     }
 
     public void addScore(int score)
     {
         this.scoreOverall += score;
-        scoreText.text = "Score: " + this.scoreOverall;
+        scoreText.text = "" + this.scoreOverall;
         endScoreText.text = "" + scoreOverall;
         
     }
@@ -143,7 +143,7 @@ public class Main : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerMovement>().health = sd.health;
         scoreOverall = sd.score;
-        scoreText.text = "Score: " + scoreOverall;
+        scoreText.text = "" + scoreOverall;
         player.GetComponentInChildren<WeaponMenager>().ChangeWeapon(sd.currentWeapon);
         player.GetComponentInChildren<WeaponDef>().ammo = sd.ammo;
         SetAmmo(sd.ammo);
