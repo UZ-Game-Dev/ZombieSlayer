@@ -15,7 +15,8 @@ public enum Types
     Speed_PU,
     Nuke_PU,
     Freeze_PU,
-    Scare_PU
+    Scare_PU,
+    Gold
 }
 
 public class Item : MonoBehaviour
@@ -53,9 +54,13 @@ public class Item : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time * 4, 1f));
         }
-        
 
-        if (touched && Input.GetButtonDown("Use"))
+        //instant podnoszenie
+        if (touched && types == Types.Gold)
+        {
+            player.Pickup(types, gameObject);
+        }
+        else if (touched && Input.GetButtonDown("Use"))
         {
             
             player.Pickup(types, gameObject);

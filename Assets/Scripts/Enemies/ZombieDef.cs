@@ -12,6 +12,8 @@ public class ZombieDef : MonoBehaviour
     public float speed;
     public GameObject[] dropList;
     public bool canDrop = false;
+    public RuntimeAnimatorController[] zombie_animation;
+
 
     public bool frozen = false;
     public bool scared = false;
@@ -31,6 +33,7 @@ public class ZombieDef : MonoBehaviour
         sp = FindObjectOfType<ZombieSpawner>();
         rb = GetComponent<Rigidbody2D>();
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        changeSkin();
     }
 
     void Update()
@@ -113,7 +116,6 @@ public class ZombieDef : MonoBehaviour
             }
             else
             {
-                Debug.Log("nie ma ammo");
                 for (int i = 1; i < dropList.Length; i++)
                 {
                     float rand = Random.Range(0f, 1f);
@@ -125,6 +127,13 @@ public class ZombieDef : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void changeSkin()
+    {
+        int rand = (int) Random.Range(0f, 3f);
+        //zmienia animacje, bo wykorzystuja inne sprity
+        GetComponent<Animator>().runtimeAnimatorController = zombie_animation[rand] as RuntimeAnimatorController;
     }
     public void getCold(float time)
     {
