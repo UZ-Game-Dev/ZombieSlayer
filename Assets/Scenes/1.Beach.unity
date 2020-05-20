@@ -32244,8 +32244,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1295585999}
-        m_MethodName: LoadMenu
+      - m_Target: {fileID: 1295585997}
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33284,7 +33284,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1295585999}
+      - m_Target: {fileID: 1295585997}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:

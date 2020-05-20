@@ -36,7 +36,7 @@ public class ZombieDef : MonoBehaviour
         changeSkin();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //big flipper
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();

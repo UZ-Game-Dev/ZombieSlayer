@@ -97,11 +97,13 @@ public class Main : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("QUIT");
+        FindObjectOfType<SaveData>().Destroy();
         Application.Quit();
     }
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        FindObjectOfType<SaveData>().Destroy();
         SceneManager.LoadScene(0);
     }
 
