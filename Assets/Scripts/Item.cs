@@ -41,7 +41,7 @@ public class Item : MonoBehaviour
         source = GetComponent<AudioSource>();
         render = GetComponent<Renderer>();
     }
-    void Update()
+    void FixedUpdate()
     {
         //Destroy(this.gameObject, lifeTime);
 

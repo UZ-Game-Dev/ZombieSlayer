@@ -20,6 +20,7 @@ public class ZombieDef : MonoBehaviour
 
     Vector2 moveDirection;
     private Transform playerPos;
+    private PlayerMovement playerMovement;
     private ZombieSpawner sp;
     private Rigidbody2D rb;
     private AudioSource source;
@@ -32,14 +33,14 @@ public class ZombieDef : MonoBehaviour
         main = FindObjectOfType<Main>();
         sp = FindObjectOfType<ZombieSpawner>();
         rb = GetComponent<Rigidbody2D>();
-        playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
         changeSkin();
     }
 
     void FixedUpdate()
     {
         //big flipper
-        playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        playerPos = playerMovement.GetComponent<Transform>();
         if (frozen)
         {
             
