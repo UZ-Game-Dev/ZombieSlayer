@@ -15,6 +15,9 @@ public class highscoreManager : MonoBehaviour
     public Text highscore4;
     public Text name5;
     public Text highscore5;
+    public Text name6;
+    public Text highscore6;
+
     private void OnEnable()
     {
        
@@ -87,8 +90,20 @@ public class highscoreManager : MonoBehaviour
             highscore5.text = "" + PlayerPrefs.GetInt("highscore5");
         }
 
+        if (!PlayerPrefs.HasKey("highscore6"))
+        {
+            name6.text = "------";
+            highscore6.text = "------";
 
-     
+        }
+        else
+        {
+            name6.text = PlayerPrefs.GetString("name6");
+            highscore6.text = "" + PlayerPrefs.GetInt("highscore6");
+        }
+
+
+
     }
 
 }

@@ -16,35 +16,49 @@ public enum Types
     Nuke_PU,
     Freeze_PU,
     Scare_PU,
-    Gold
+    Gold,
+    AK47,
 }
 
 public class Item : MonoBehaviour
 {
     public Types types;
+    public bool isWeapon;
     public float chanceToDrop;
     public float lifeTime;
     public float timeToPing;
     
     public bool touched;
     public float timer = 0;
+
     private PlayerMovement player;
+    private WeaponMenager weaponMenager;
+
     private Collider2D collision;
-    private Renderer render;
+    private int weaponNumber = 0;
 
-    private AudioSource source;
-
-    
 
     private void Start()
     {
-        source = GetComponent<AudioSource>();
-        render = GetComponent<Renderer>();
+        if (isWeapon)
+        {
+            switch (types)
+            {
+                case Types.M4:
+                    weaponNumber = 1;
+                    break;
+                case Types.Shotgun:
+                    weaponNumber = 2;
+                    break;
+                case Types.SMG:
+                    weaponNumber = 3;
+                    break;
+            }
+        }
     }
+
     void FixedUpdate()
     {
-        //Destroy(this.gameObject, lifeTime);
-
         timer += Time.fixedDeltaTime;
         if (timer >= lifeTime)
         {
@@ -54,24 +68,53 @@ public class Item : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time * 4, 1f));
         }
+    }
 
+    void Update()
+    {
         //instant podnoszenie
         if (touched && types == Types.Gold)
         {
-            player.Pickup(types, gameObject);
+            player.playSound();
+            player.Pickup(types);
+            Destroy(gameObject);
         }
         else if (touched && Input.GetButtonDown("Use"))
         {
-            
-            player.Pickup(types, gameObject);
-            
-
+            if (isWeapon)
+            {
+                weaponMenager.weaponPickedUp = true;
+                if (weaponMenager.currentWeapon != weaponNumber)
+                {
+                    weaponMenager.ChangeWeapon(weaponNumber);
+                }
+                else
+                {
+                    //add ammo
+                    if (weaponMenager.currentWeapon != 0)//Sprawdz czy jest wybrany AK-47
+                    {
+                        player.GetComponentInChildren<WeaponDef>().AddAmmo();
+                        Destroy(gameObject);
+                    }
+                }
+            }
+            else
+            {
+                if (types == Types.Ammunition)
+                {
+                    if (weaponMenager.currentWeapon == 0) return;
+                }
+                player.Pickup(types);
+            }
+            player.playSound();
+            Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
         player = coll.GetComponent<PlayerMovement>();
+        weaponMenager = coll.GetComponentInChildren<WeaponMenager>();
         if (player != null)
         {
             collision = coll;
@@ -89,7 +132,7 @@ public class Item : MonoBehaviour
     }
 
 }
-/*
+/* Rozumiem, że to nie potrzebne?
 public class Inventory
 {
 

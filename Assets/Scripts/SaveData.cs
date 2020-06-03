@@ -11,6 +11,7 @@ public class SaveData : MonoBehaviour
     public int score;
     public int currentWeapon;
     public Direction direction;
+    public bool fraudsIsActivated;
     /*
     public int zombieScore;
     public int zombieDamage;

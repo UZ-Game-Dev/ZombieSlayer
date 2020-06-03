@@ -32,6 +32,9 @@ public class Main : MonoBehaviour
     public int zombieCounter_current;
     public float timeBetwSpawn_current;
 
+    [Header("EXIT (No enterance)")]
+    public GameObject[] exitBox = new GameObject[4];
+
     private void Start()
     {
         LoadData();
@@ -55,7 +58,7 @@ public class Main : MonoBehaviour
         endScoreText.text = "" + scoreOverall;
         
     }
-    public void SetAmmo(int ammo)
+    public void SetAmmo(string ammo)
     {
         ammoText.text = "" + ammo;
     }
@@ -84,6 +87,8 @@ public class Main : MonoBehaviour
     void Pause()
     {
         gameoverUI.SetActive(true);
+        if (FindObjectOfType<SaveData>().fraudsIsActivated) Destroy(GameObject.Find("Input_window backup"));
+        name_input.transform.parent.GetComponent<InputField>().ActivateInputField();
         Time.timeScale = 0f;
         GameOver = true;
 
@@ -148,7 +153,7 @@ public class Main : MonoBehaviour
         scoreText.text = "" + scoreOverall;
         player.GetComponentInChildren<WeaponMenager>().ChangeWeapon(sd.currentWeapon);
         player.GetComponentInChildren<WeaponDef>().ammo = sd.ammo;
-        SetAmmo(sd.ammo);
+        if(GameObject.Find("Weapon").GetComponent<Text>().text != "AK-47")SetAmmo(sd.ammo+"");
         //load stats into origin zombie
         ZombieDef zombieDef = GameObject.FindGameObjectWithTag("OriginZombie").GetComponent<ZombieDef>();
         zombieDef.score = zombieScore_current;
@@ -162,34 +167,49 @@ public class Main : MonoBehaviour
         zombieSpawner.zombieCounter = zombieCounter_current;
         zombieSpawner.timeBetwSpawn = timeBetwSpawn_current;
 
-        switch (sd.direction)
+        if (sd.lastLevel == 0)
         {
-            case Direction.N:
-                player.transform.position = PlayerSpawnPoints[2].position;
-                break;
-            case Direction.E:
-                player.transform.position = PlayerSpawnPoints[3].position;
-                break;
-            case Direction.S:
-                player.transform.position = PlayerSpawnPoints[0].position;
-                break;
-            case Direction.W:
-                player.transform.position = PlayerSpawnPoints[1].position;
-                break;
-            default:
-                break;
+            player.transform.position = Vector3.zero;
+        }
+        else
+        {
+            switch (sd.direction)
+            {
+                case Direction.N:
+                    player.transform.position = PlayerSpawnPoints[2].position;
+                    exitBox[2].SetActive(true);
+                    Destroy(GameObject.Find("Exit_S"));
+                    break;
+                case Direction.E:
+                    player.transform.position = PlayerSpawnPoints[3].position;
+                    exitBox[1].SetActive(true);
+                    Destroy(GameObject.Find("Exit_W"));
+                    break;
+                case Direction.S:
+                    player.transform.position = PlayerSpawnPoints[0].position;
+                    exitBox[3].SetActive(true);
+                    Destroy(GameObject.Find("Exit_N"));
+                    break;
+                case Direction.W:
+                    player.transform.position = PlayerSpawnPoints[1].position;
+                    exitBox[0].SetActive(true);
+                    Destroy(GameObject.Find("Exit_E"));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
-
-public void sumbitScore()
+    //Łoł :O
+    public void sumbitScore()
     {
-        if(!PlayerPrefs.HasKey("highscore1"))
+        if (!PlayerPrefs.HasKey("highscore1"))
         {
             PlayerPrefs.SetInt("highscore1", scoreOverall);
             PlayerPrefs.SetString("name1", name_input.text);
             PlayerPrefs.Save();
-            
+
         }
         else
         {
@@ -279,7 +299,7 @@ public void sumbitScore()
                                         {
                                             if (PlayerPrefs.GetInt("highscore5") < scoreOverall)
                                             {
-
+                                                obniz(5);
                                                 PlayerPrefs.SetInt("highscore5", scoreOverall);
                                                 PlayerPrefs.SetString("name5", name_input.text);
                                                 PlayerPrefs.Save();
@@ -288,7 +308,32 @@ public void sumbitScore()
                                             }
                                             else
                                             {
-                                                Debug.Log("Słabeusz");
+                                                //higscore 6
+                                                if (!PlayerPrefs.HasKey("highscore6"))
+                                                {
+                                                    PlayerPrefs.SetInt("highscore6", scoreOverall);
+                                                    PlayerPrefs.SetString("name6", name_input.text);
+                                                    PlayerPrefs.Save();
+
+                                                }
+                                                else
+                                                {
+                                                    if (PlayerPrefs.GetInt("highscore6") < scoreOverall)
+                                                    {
+
+                                                        PlayerPrefs.SetInt("highscore6", scoreOverall);
+                                                        PlayerPrefs.SetString("name6", name_input.text);
+                                                        PlayerPrefs.Save();
+
+
+                                                    }
+                                                    else
+                                                    {
+                                                        Debug.Log("Słabeusz");
+
+                                                    }
+
+                                                }
 
                                             }
 
@@ -305,21 +350,19 @@ public void sumbitScore()
             }
 
         }
-
-     
-
-        
     }
     public void obniz(int poziom)
     {
         switch (poziom)
         {
             case 1:
+                if (PlayerPrefs.HasKey("highscore5")) { PlayerPrefs.SetInt("highscore6", PlayerPrefs.GetInt("highscore5")); }
                 if (PlayerPrefs.HasKey("highscore4")) { PlayerPrefs.SetInt("highscore5", PlayerPrefs.GetInt("highscore4")); }
                 if (PlayerPrefs.HasKey("highscore3")) { PlayerPrefs.SetInt("highscore4", PlayerPrefs.GetInt("highscore3")); }
                 if (PlayerPrefs.HasKey("highscore2")) { PlayerPrefs.SetInt("highscore3", PlayerPrefs.GetInt("highscore2")); }
                 if (PlayerPrefs.HasKey("highscore1")) { PlayerPrefs.SetInt("highscore2", PlayerPrefs.GetInt("highscore1")); }
 
+                if (PlayerPrefs.HasKey("name5")) { PlayerPrefs.SetString("name6", PlayerPrefs.GetString("name5")); }
                 if (PlayerPrefs.HasKey("name4")) { PlayerPrefs.SetString("name5", PlayerPrefs.GetString("name4")); }
                 if (PlayerPrefs.HasKey("name3")) { PlayerPrefs.SetString("name4", PlayerPrefs.GetString("name3")); }
                 if (PlayerPrefs.HasKey("name2")) { PlayerPrefs.SetString("name3", PlayerPrefs.GetString("name2")); }
@@ -329,27 +372,39 @@ public void sumbitScore()
                 break;
 
             case 2:
+                if (PlayerPrefs.HasKey("highscore5")) { PlayerPrefs.SetInt("highscore6", PlayerPrefs.GetInt("highscore5")); }
                 if (PlayerPrefs.HasKey("highscore4")) { PlayerPrefs.SetInt("highscore5", PlayerPrefs.GetInt("highscore4")); }
                 if (PlayerPrefs.HasKey("highscore3")) { PlayerPrefs.SetInt("highscore4", PlayerPrefs.GetInt("highscore3")); }
                 if (PlayerPrefs.HasKey("highscore2")) { PlayerPrefs.SetInt("highscore3", PlayerPrefs.GetInt("highscore2")); }
 
+                if (PlayerPrefs.HasKey("name5")) { PlayerPrefs.SetString("name6", PlayerPrefs.GetString("name5")); }
                 if (PlayerPrefs.HasKey("name4")) { PlayerPrefs.SetString("name5", PlayerPrefs.GetString("name4")); }
                 if (PlayerPrefs.HasKey("name3")) { PlayerPrefs.SetString("name4", PlayerPrefs.GetString("name3")); }
                 if (PlayerPrefs.HasKey("name2")) { PlayerPrefs.SetString("name3", PlayerPrefs.GetString("name2")); }
                 break;
 
             case 3:
+                if (PlayerPrefs.HasKey("highscore5")) { PlayerPrefs.SetInt("highscore6", PlayerPrefs.GetInt("highscore5")); }
                 if (PlayerPrefs.HasKey("highscore4")) { PlayerPrefs.SetInt("highscore5", PlayerPrefs.GetInt("highscore4")); }
                 if (PlayerPrefs.HasKey("highscore3")) { PlayerPrefs.SetInt("highscore4", PlayerPrefs.GetInt("highscore3")); }
 
+                if (PlayerPrefs.HasKey("name5")) { PlayerPrefs.SetString("name6", PlayerPrefs.GetString("name5")); }
                 if (PlayerPrefs.HasKey("name4")) { PlayerPrefs.SetString("name5", PlayerPrefs.GetString("name4")); }
                 if (PlayerPrefs.HasKey("name3")) { PlayerPrefs.SetString("name4", PlayerPrefs.GetString("name3")); }
                 break;
 
             case 4:
+                if (PlayerPrefs.HasKey("highscore5")) { PlayerPrefs.SetInt("highscore6", PlayerPrefs.GetInt("highscore5")); }
                 if (PlayerPrefs.HasKey("highscore4")) { PlayerPrefs.SetInt("highscore5", PlayerPrefs.GetInt("highscore4")); }
 
+                if (PlayerPrefs.HasKey("name5")) { PlayerPrefs.SetString("name6", PlayerPrefs.GetString("name5")); }
                 if (PlayerPrefs.HasKey("name4")) { PlayerPrefs.SetString("name5", PlayerPrefs.GetString("name4")); }
+                break;
+
+            case 5:
+                if (PlayerPrefs.HasKey("highscore5")) { PlayerPrefs.SetInt("highscore6", PlayerPrefs.GetInt("highscore5")); }
+
+                if (PlayerPrefs.HasKey("name5")) { PlayerPrefs.SetString("name6", PlayerPrefs.GetString("name5")); }
                 break;
 
             default:

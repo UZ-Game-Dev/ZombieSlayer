@@ -3,23 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour {
+    private float healthMax;
 
-	Vector3 localScale;
-    private ZombieDef zombieDef;
-    public float healthMax;
-    public float health;
+    public void SetHealthMax(float _healthMax) => healthMax = _healthMax;
 
-	// Use this for initialization
-	void Start () {
-		localScale = transform.localScale;
-        zombieDef = GetComponentInParent<ZombieDef>();
-        healthMax = zombieDef.health;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        health = zombieDef.health;
-		localScale.x = health / healthMax;
-		transform.localScale = localScale;
-	}
+    public void UpdateHealthBar(float _health)
+    {
+        transform.localScale = new Vector3(_health/healthMax, transform.localScale.y, transform.localScale.z);
+    }
 }

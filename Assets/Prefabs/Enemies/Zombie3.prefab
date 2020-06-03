@@ -143,6 +143,10 @@ MonoBehaviour:
   - {fileID: 2409944114629765655, guid: 4d1dff360f3764048be2defff58216d2, type: 3}
   - {fileID: 1079087107848361866, guid: aef3aab36e48a3a44bb97869c0fedf91, type: 3}
   canDrop: 0
+  zombie_animation: []
+  healthBar: {fileID: 1281504557233142927}
+  frozen: 0
+  scared: 0
 --- !u!114 &487601008932033454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,8 +219,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.3656637
+  m_UseAutoMass: 0
+  m_Mass: 0.8
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -495,8 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d087a1436e9713d40ab4f03fbcd56bff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 0
-  health: 0
 --- !u!212 &3494447556670551459
 SpriteRenderer:
   m_ObjectHideFlags: 0

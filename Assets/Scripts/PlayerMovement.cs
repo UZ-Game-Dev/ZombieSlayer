@@ -10,8 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public int HealthPickup;
     public float InvAfterDmg;
     public float moveSpeed=5f;
-    private int iterator;
-    private int wDupe;
     public Rigidbody2D rb;
     public Animator animator;
     public GameObject pickUP_Sprite;
@@ -23,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public bool invulnerable_PU = false;
 
     private AudioSource source;
-    private float oldSpeed = 0;
+    private float _speeding;
 
     [Header("Power Ups")]
     public float GoldBullets_Time;
@@ -51,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (iterator != wDupe) source.Play();
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         if (invulnerable)
@@ -86,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         movement.Normalize();
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * (moveSpeed+_speeding/2.5f) * Time.fixedDeltaTime);
     }
 
     public void playSound()
@@ -120,22 +117,18 @@ public class PlayerMovement : MonoBehaviour
     
     }
 
-    public void Pickup(Types types, GameObject pickup)
+    public void Pickup(Types types)
     {
-        source.Play();
-        
         switch (types)
         {
             case Types.Ammunition:
                 if (weaponMenager.currentWeapon == 0)
                 {
-                    Debug.Log("AK");
                     break;
                 }
                 else
                 {
                     GetComponentInChildren<WeaponDef>().AddAmmo();
-                    Destroy(pickup);
                     
                 }
                 break;
@@ -143,64 +136,63 @@ public class PlayerMovement : MonoBehaviour
        
                 health += HealthPickup;
                 main.setHealth(health);
-                Destroy(pickup);
                 break;
             case Types.Gold:
                 main.addScore(goldValue);
-                Destroy(pickup);
                 break;
             case Types.GoldBullets_PU:
-                StartCoroutine(ShotingGold(GoldBullets_Time));
-                Destroy(pickup);
+                StopCoroutine("ShotingGold");
+                StartCoroutine("ShotingGold");
                 break;
             case Types.Inv_PU:
-                StartCoroutine(Inv(inv_Time));
-                Destroy(pickup);
+                StopCoroutine("Inv");
+                StartCoroutine("Inv");
                 break;
             case Types.Speed_PU:
-                StartCoroutine(Speed(speed_Time, speed_Value));
-                Destroy(pickup);
+                StopCoroutine("Speed");
+                StartCoroutine("Speed");
                 break;
             case Types.Nuke_PU:
                 Nuke(nuke_range, nuke_dmg);
-                Destroy(pickup);
                 break;
             case Types.Freeze_PU:
-                StartCoroutine(Freeze(freeze_Time, freeze_range));
-                Destroy(pickup);
+                StopCoroutine("Freeze");
+                StartCoroutine("Freeze");
                 break;
             case Types.Scare_PU:
-                StartCoroutine(Scare(scare_Time, scare_range));
-                Destroy(pickup);
+                StopCoroutine("Scare");
+                StartCoroutine("Scare");
                 break;
             default:
                 break;
         }
     }
 
-    IEnumerator ShotingGold(float x)
+    IEnumerator ShotingGold()
     {
         GetComponentInChildren<WeaponDef>().shotingGold = true;
-        yield return new WaitForSeconds(x);
+        yield return new WaitForSeconds(GoldBullets_Time);
         GetComponentInChildren<WeaponDef>().shotingGold = false;
     }
-    IEnumerator Inv(float time)
+    IEnumerator Inv()
     {
         invulnerable_PU = true;
         shield_sprite.SetActive(true);
-        yield return new WaitForSeconds(time);
+        shield_sprite.GetComponent<SpriteRenderer>().color = Color.white;
+        shield_sprite.GetComponent<Shield>().timer = 0;
+        shield_sprite.GetComponent<Shield>().timeToPing = inv_Time-2;
+        yield return new WaitForSeconds(inv_Time);
         shield_sprite.SetActive(false);
         invulnerable_PU = false;
     }
-    IEnumerator Speed(float time, float speed)
+    IEnumerator Speed()
     {
-        oldSpeed = moveSpeed;
-        moveSpeed = speed;
-        //animacje chyba blokuja zmiane coloru?
+        _speeding = speed_Value;
+        //animacje chyba blokuja zmiane coloru? - odp: Może tak być ;)
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 210f, 0f, 255f);
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(speed_Time);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 255f);
-        moveSpeed = oldSpeed;
+        _speeding = 1;
     }
     private void Nuke(float range, int damage)
     {
@@ -214,9 +206,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    IEnumerator Freeze(float time, float range)
+    IEnumerator Freeze()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, range);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, freeze_range);
         foreach (Collider2D nearbyObject in colliders)
         {
             ZombieDef zombie = nearbyObject.transform.GetComponent<ZombieDef>();
@@ -225,20 +217,20 @@ public class PlayerMovement : MonoBehaviour
                 zombie.getCold(scare_Time);
             }
         }
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(freeze_Time);
     }
-    IEnumerator Scare(float time, float range)
+    IEnumerator Scare()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, range);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, scare_range);
         foreach (Collider2D nearbyObject in colliders)
         {
             ZombieDef zombie = nearbyObject.transform.GetComponent<ZombieDef>();
             if (zombie != null)
             {
-                zombie.getSpooky(time);
+                zombie.getSpooky(scare_Time);
             }
         }
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(scare_Time);
 
     }
 }

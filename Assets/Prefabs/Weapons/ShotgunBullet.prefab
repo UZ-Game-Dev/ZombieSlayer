@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 877596795537144119}
   - component: {fileID: 877596795537144116}
   - component: {fileID: 877596795537144117}
-  - component: {fileID: 9057746527845120927}
   - component: {fileID: 452225351559715833}
   - component: {fileID: 335269831193626025}
   m_Layer: 11
@@ -98,19 +97,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   damageOnHit: 20
---- !u!114 &9057746527845120927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877596795537144522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd950922a1768ee41a3b6974ad15276c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 1
 --- !u!58 &452225351559715833
 CircleCollider2D:
   m_ObjectHideFlags: 0

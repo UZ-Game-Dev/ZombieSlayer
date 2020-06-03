@@ -4,9 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GamePaused = false;
+    private bool GamePaused = false;
     private PlayerMovement sp;
     public GameObject pasueMenuUI;
+    public GameObject LeaveMenu;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 120;
+    }
 
     // Update is called once per frame
     void Start()
@@ -15,7 +21,7 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && !LeaveMenu.activeSelf)
         {
             if (GamePaused)
             {

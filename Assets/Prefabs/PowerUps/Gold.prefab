@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   types: 12
+  isWeapon: 0
   chanceToDrop: 0
   lifeTime: 10000
   timeToPing: 10000

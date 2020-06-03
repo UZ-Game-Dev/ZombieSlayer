@@ -13,6 +13,7 @@ public class ZombieDef : MonoBehaviour
     public GameObject[] dropList;
     public bool canDrop = false;
     public RuntimeAnimatorController[] zombie_animation;
+    public HealthBar healthBar;
 
 
     public bool frozen = false;
@@ -29,6 +30,8 @@ public class ZombieDef : MonoBehaviour
 
     void Start()
     {
+        healthBar.SetHealthMax(health);
+        healthBar.UpdateHealthBar(health);
         weaponmenager = GameObject.FindWithTag("Player").GetComponentInChildren<WeaponMenager>();
         main = FindObjectOfType<Main>();
         sp = FindObjectOfType<ZombieSpawner>();
@@ -86,7 +89,6 @@ public class ZombieDef : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        
         health -= damage;
         if (health<=0)
         {
@@ -94,9 +96,9 @@ public class ZombieDef : MonoBehaviour
             main.addScore(score);
             sp.zombieKilled++;
             Drop();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
-        
+        healthBar.UpdateHealthBar(health);
     }
 
     public void Drop() 

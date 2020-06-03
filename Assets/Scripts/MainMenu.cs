@@ -5,8 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   
-  public void PlayGame ()
+    private void Awake()
+    {
+        Application.targetFrameRate = 120;
+    }
+
+    public void PlayGame ()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
     }
@@ -15,13 +19,4 @@ public class MainMenu : MonoBehaviour
         Debug.Log("QUIT");
         Application.Quit();
     }
-    public void Credits()
-    {
-        SceneManager.LoadScene(9);
-    }
-    public void MenuBack()
-    {
-        SceneManager.LoadScene(0);
-    }
 }
-

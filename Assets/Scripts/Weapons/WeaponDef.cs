@@ -35,7 +35,8 @@ public class WeaponDef : MonoBehaviour
         main = FindObjectOfType<Main>();
         isShooting = false;
         ResetAmmo();
-        main.SetAmmo(ammo);
+        if(weaponType == 0) main.SetAmmo("");
+        else main.SetAmmo(ammo+"");
     }
     private void Update()
     {
@@ -70,8 +71,8 @@ public class WeaponDef : MonoBehaviour
         if (weaponType != WeaponType.AK) //jeśli nie AK to odejmuje ammo
         { 
             ammo--;
-            main.SetAmmo(ammo);
-        } 
+            main.SetAmmo(ammo+"");
+        }
         yield return new WaitForSeconds(delayBetweenShots);
     }
     void OnDisable()
@@ -82,7 +83,7 @@ public class WeaponDef : MonoBehaviour
     public void AddAmmo()
     {
         ammo += ammoPickup;
-        main.SetAmmo(ammo);
+        main.SetAmmo(ammo+"");
 
     }
     public void ResetAmmo()
