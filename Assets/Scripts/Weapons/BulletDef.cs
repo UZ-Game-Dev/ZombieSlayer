@@ -6,6 +6,7 @@ public class BulletDef : MonoBehaviour
 {
 	public float speed;
     public int damageOnHit;
+    public GameObject blood;
 
     private void FixedUpdate()
     {
@@ -24,6 +25,7 @@ public class BulletDef : MonoBehaviour
         if (collision.gameObject.layer == 9) // 9 - enemy
         {
             collision.SendMessage("TakeDamage",damageOnHit);
+            Instantiate(blood, transform.position, blood.transform.rotation);
         }
 		Destroy(gameObject);
     }

@@ -26241,7 +26241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pasueMenuUI: {fileID: 1082896117}
-  LeaveMenu: {fileID: 0}
+  LeaveMenu: {fileID: 559244234}
 --- !u!114 &1295586000
 MonoBehaviour:
   m_ObjectHideFlags: 0

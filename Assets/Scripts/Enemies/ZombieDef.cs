@@ -27,6 +27,7 @@ public class ZombieDef : MonoBehaviour
     private AudioSource source;
     private WeaponMenager weaponmenager;
 
+    private bool isKnockback, isDead;
 
     void Start()
     {
@@ -83,6 +84,7 @@ public class ZombieDef : MonoBehaviour
         }
         else
         {
+            if(!isKnockback)
             rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
         }
     }
@@ -90,15 +92,36 @@ public class ZombieDef : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if (health<=0)
+        if (health<=0 && !isDead)
         {
+            isDead = true;
             sp.playSound();
             main.addScore(score);
             sp.zombieKilled++;
             Drop();
             Destroy(gameObject);
+            return;
         }
         healthBar.UpdateHealthBar(health);
+        if(!isKnockback)
+        StopCoroutine("UpdateKnockbackState");
+        StartCoroutine("UpdateKnockbackState");
+    }
+
+    private float _knockbackStartTime;
+
+    IEnumerator UpdateKnockbackState()
+    {
+        isKnockback = true;
+        _knockbackStartTime = Time.time;
+        float time1 = 0;
+        while (time1 < 0.04f)
+        {
+            time1 += Time.deltaTime * 0.5f;
+            rb.MovePosition(Vector2.MoveTowards(transform.position, transform.position + (transform.position - playerPos.position), (speed - 0.5f) * Time.deltaTime));
+            yield return new WaitForSeconds(0.01f);
+        }
+        isKnockback = false;
     }
 
     public void Drop() 

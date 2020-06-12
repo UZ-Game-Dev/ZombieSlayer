@@ -35,7 +35,7 @@ public class WeaponDef : MonoBehaviour
         main = FindObjectOfType<Main>();
         isShooting = false;
         ResetAmmo();
-        if(weaponType == 0) main.SetAmmo("");
+        if(weaponType == WeaponType.AK) main.SetAmmo("");
         else main.SetAmmo(ammo+"");
     }
     private void Update()
@@ -44,7 +44,7 @@ public class WeaponDef : MonoBehaviour
         {
             source.Play();
             StartCoroutine(ShootOrder());
-            if(weaponType != 0 && ammo <= 0) //zmiana na AK jak skonczy sie ammo
+            if(weaponType != WeaponType.AK && ammo <= 0) //zmiana na AK jak skonczy sie ammo
             {
                 FindObjectOfType<WeaponMenager>().ChangeWeapon(0);
                 FindObjectOfType<WeaponMenager>().weaponPickedUp = false;
@@ -66,7 +66,15 @@ public class WeaponDef : MonoBehaviour
         }
         else
         {
-            Instantiate(bullet, firePoint.position, transform.rotation);
+            
+            if (weaponType == WeaponType.Shotgun)
+            {
+                Instantiate(bullet, firePoint.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, gameObject.transform.parent.eulerAngles.z + 7f));
+                Instantiate(bullet, firePoint.position, transform.rotation);
+                Instantiate(bullet, firePoint.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, gameObject.transform.parent.eulerAngles.z + -7f));
+            }
+            else
+                Instantiate(bullet, firePoint.position, transform.rotation);
         }
         if (weaponType != WeaponType.AK) //jeśli nie AK to odejmuje ammo
         { 

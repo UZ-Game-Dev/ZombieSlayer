@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 17
   damageOnHit: 3
+  blood: {fileID: 7023476402355920649, guid: 6396ddc0a0970c74690791f4fad908e6, type: 3}
 --- !u!58 &873972631886375100
 CircleCollider2D:
   m_ObjectHideFlags: 0
