@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
@@ -8,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     private PlayerMovement sp;
     public GameObject pasueMenuUI;
     public GameObject LeaveMenu;
+    public GameObject LeaveGame;
 
     private void Awake()
     {
@@ -21,7 +23,7 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !LeaveMenu.activeSelf)
+        if(Input.GetKeyDown(KeyCode.Escape) && !LeaveMenu.activeSelf && !LeaveGame.activeSelf)
         {
             if (GamePaused)
             {
@@ -32,19 +34,16 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-        
     }
 
-     public void Resume()
+    public void Resume()
     {
         pasueMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
         if (sp.health <= 0)
         {
-
             Time.timeScale = 0f;
-
         }
     }
 
@@ -53,17 +52,22 @@ public class PauseMenu : MonoBehaviour
         pasueMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
-
     }
+
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        FindObjectOfType<SaveData>().Destroy();
         SceneManager.LoadScene(0);
     }
 
     public void QuitGame()
     {
         Debug.Log("Quitting game...");
-         Application.Quit();
+    #if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+    #else
+		Application.Quit();
+    #endif
     }
 }

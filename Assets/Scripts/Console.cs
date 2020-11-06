@@ -56,8 +56,9 @@ public class Console : MonoBehaviour
                         {
                             case "hp":
                                 _playerMovement.health = _playerMovement.health + int.Parse(arrayCode[1]);
-                                _main.setHealth(_playerMovement.health);
-                                text = "+" + arrayCode[1] + " HP";
+                                _main.SetHealth(_playerMovement.health);
+                                if(int.Parse(arrayCode[1]) >= 0) text = "+" + arrayCode[1] + "HP";
+                                else text = arrayCode[1] + "HP";
                                 break;
                             case "inv":
                                 _playerMovement.Pickup(Types.Inv_PU);
@@ -105,14 +106,14 @@ public class Console : MonoBehaviour
                                 break;
                             case "bosson":
                                 _playerMovement.health = 1000;
-                                _main.setHealth(_playerMovement.health);
+                                _main.SetHealth(_playerMovement.health);
                                 _playerMovement.Pickup(Types.Nuke_PU);
                                 StartCoroutine("Boss");
                                 text = "BOSS activated!";
                                 break;
                             case "bossoff":
                                 _playerMovement.health = 100;
-                                _main.setHealth(_playerMovement.health);
+                                _main.SetHealth(_playerMovement.health);
                                 StopCoroutine("Boss");
                                 text = "BOSS disabled";
                                 break;

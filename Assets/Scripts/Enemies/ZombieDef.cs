@@ -29,6 +29,9 @@ public class ZombieDef : MonoBehaviour
 
     private bool isKnockback, isDead;
 
+    public float GetTimeEffect { get => _timeEffects; }
+    protected float _timeEffects = -1.0f;
+
     void Start()
     {
         healthBar.SetHealthMax(health);
@@ -96,7 +99,7 @@ public class ZombieDef : MonoBehaviour
         {
             isDead = true;
             sp.playSound();
-            main.addScore(score);
+            main.AddScore(score);
             sp.zombieKilled++;
             Drop();
             Destroy(gameObject);
@@ -161,30 +164,36 @@ public class ZombieDef : MonoBehaviour
         //zmienia animacje, bo wykorzystuja inne sprity
         GetComponent<Animator>().runtimeAnimatorController = zombie_animation[rand] as RuntimeAnimatorController;
     }
-    public void getCold(float time)
+    public void GetCold(float time)
     {
-        StartCoroutine(freeze(time));
+        StopCoroutine("Freeze");
+        _timeEffects = time;
+        StartCoroutine("Freeze");
     }
-    IEnumerator freeze(float time)
+    IEnumerator Freeze()
     {
         frozen = true;
         GetComponent<Animator>().enabled = false;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         GetComponent<SpriteRenderer>().color = new Color(0f, 180f, 255f, 255f);
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(_timeEffects);
         GetComponent<SpriteRenderer>().color = new Color(255f, 255f, 255f, 255f);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         GetComponent<Animator>().enabled = true;
         frozen = false;
+        _timeEffects = -1.0f;
     }
-    public void getSpooky(float time)
-    {       
-        StartCoroutine(scare(time));
+    public void GetSpooky(float time)
+    {
+        StopCoroutine("Scare");
+        _timeEffects = time;
+        StartCoroutine("Scare");
     }
-    IEnumerator scare(float time)
+    IEnumerator Scare()
     {
         scared = true;
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(_timeEffects);
         scared = false;
+        _timeEffects = -1.0f;
     }
 }

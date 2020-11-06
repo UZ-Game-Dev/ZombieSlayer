@@ -5,19 +5,24 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public int damage;
+
+    private ZombieDef _parent;
+
     private void Start()
     {
         damage = GetComponentInParent<ZombieDef>().damage;
+        _parent = GetComponentInParent<ZombieDef>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-
-        PlayerMovement player = collision.GetComponent<PlayerMovement>();
-        if (player != null)
+        if (_parent.GetTimeEffect < 0)
         {
-            player.TakeDamage(damage);
+            PlayerMovement player = collision.GetComponent<PlayerMovement>();
+            if (player != null)
+            {
+                player.TakeDamage(damage);
+            }
         }
-
     }
 }

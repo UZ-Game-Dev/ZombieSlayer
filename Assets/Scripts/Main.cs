@@ -23,7 +23,6 @@ public class Main : MonoBehaviour
     public int health;
     public int ammo;
     public int currentWeapon;
-    Direction direction;
 
     public int zombieScore_current;
     public int zombieDamage_current;
@@ -41,7 +40,7 @@ public class Main : MonoBehaviour
     }
 
 
-    public void setHealth(int health)
+    public void SetHealth(int health)
     {
         if (health <= 0)
         {
@@ -51,7 +50,7 @@ public class Main : MonoBehaviour
         healthText.text = "" + health;
     }
 
-    public void addScore(int score)
+    public void AddScore(int score)
     {
         this.scoreOverall += score;
         scoreText.text = "" + this.scoreOverall;
@@ -99,12 +98,7 @@ public class Main : MonoBehaviour
         FindObjectOfType<SaveData>().Destroy();
         SceneManager.LoadScene(1);
     }
-    public void QuitGame()
-    {
-        Debug.Log("QUIT");
-        FindObjectOfType<SaveData>().Destroy();
-        Application.Quit();
-    }
+
     public void LoadMenu()
     {
         Time.timeScale = 1f;
@@ -151,6 +145,7 @@ public class Main : MonoBehaviour
         player.GetComponent<PlayerMovement>().health = sd.health;
         scoreOverall = sd.score;
         scoreText.text = "" + scoreOverall;
+        endScoreText.text = "" + scoreOverall;
         player.GetComponentInChildren<WeaponMenager>().ChangeWeapon(sd.currentWeapon);
         player.GetComponentInChildren<WeaponDef>().ammo = sd.ammo;
         if(GameObject.Find("Weapon").GetComponent<Text>().text != "AK-47")SetAmmo(sd.ammo+"");
@@ -202,7 +197,7 @@ public class Main : MonoBehaviour
     }
 
     //Łoł :O
-    public void sumbitScore()
+    public void SumbitScore()
     {
         if (!PlayerPrefs.HasKey("highscore1"))
         {
@@ -215,7 +210,7 @@ public class Main : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("highscore1") < scoreOverall)
             {
-                obniz(1);//przesuwa  pozostale wyniki w dół o 1
+                Obniz(1);//przesuwa  pozostale wyniki w dół o 1
                 PlayerPrefs.SetInt("highscore1", scoreOverall);
                 PlayerPrefs.SetString("name1", name_input.text);
                 PlayerPrefs.Save();
@@ -236,7 +231,7 @@ public class Main : MonoBehaviour
                 {
                     if (PlayerPrefs.GetInt("highscore2") < scoreOverall)
                     {
-                        obniz(2);
+                        Obniz(2);
                         PlayerPrefs.SetInt("highscore2", scoreOverall);
                         PlayerPrefs.SetString("name2", name_input.text);
                         PlayerPrefs.Save();
@@ -257,7 +252,7 @@ public class Main : MonoBehaviour
                         {
                             if (PlayerPrefs.GetInt("highscore3") < scoreOverall)
                             {
-                                obniz(3);
+                                Obniz(3);
                                 PlayerPrefs.SetInt("highscore3", scoreOverall);
                                 PlayerPrefs.SetString("name3", name_input.text);
                                 PlayerPrefs.Save();
@@ -278,7 +273,7 @@ public class Main : MonoBehaviour
                                 {
                                     if (PlayerPrefs.GetInt("highscore4") < scoreOverall)
                                     {
-                                        obniz(4);
+                                        Obniz(4);
                                         PlayerPrefs.SetInt("highscore4", scoreOverall);
                                         PlayerPrefs.SetString("name4", name_input.text);
                                         PlayerPrefs.Save();
@@ -299,7 +294,7 @@ public class Main : MonoBehaviour
                                         {
                                             if (PlayerPrefs.GetInt("highscore5") < scoreOverall)
                                             {
-                                                obniz(5);
+                                                Obniz(5);
                                                 PlayerPrefs.SetInt("highscore5", scoreOverall);
                                                 PlayerPrefs.SetString("name5", name_input.text);
                                                 PlayerPrefs.Save();
@@ -351,7 +346,7 @@ public class Main : MonoBehaviour
 
         }
     }
-    public void obniz(int poziom)
+    public void Obniz(int poziom)
     {
         switch (poziom)
         {

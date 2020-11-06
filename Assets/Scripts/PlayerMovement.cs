@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         source = GetComponent<AudioSource>();
         main = FindObjectOfType<Main>();
         weaponMenager = GetComponentInChildren<WeaponMenager>();
-        main.setHealth(health);
+        main.SetHealth(health);
         pickUP_Sprite.SetActive(false);
     }
 
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         invulnerable = true;
 
         health -= damage;
-        main.setHealth(health);
+        main.SetHealth(health);
 
         if (health <= 0)
         {
@@ -135,10 +135,10 @@ public class PlayerMovement : MonoBehaviour
             case Types.Bandages:
        
                 health += HealthPickup;
-                main.setHealth(health);
+                main.SetHealth(health);
                 break;
             case Types.Gold:
-                main.addScore(goldValue);
+                main.AddScore(goldValue);
                 break;
             case Types.GoldBullets_PU:
                 StopCoroutine("ShotingGold");
@@ -156,12 +156,11 @@ public class PlayerMovement : MonoBehaviour
                 Nuke(nuke_range, nuke_dmg);
                 break;
             case Types.Freeze_PU:
-                StopCoroutine("Freeze");
-                StartCoroutine("Freeze");
+                Freeze();
                 break;
             case Types.Scare_PU:
                 StopCoroutine("Scare");
-                StartCoroutine("Scare");
+                Scare();
                 break;
             default:
                 break;
@@ -206,7 +205,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    IEnumerator Freeze()
+
+    private void Freeze()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, freeze_range);
         foreach (Collider2D nearbyObject in colliders)
@@ -214,12 +214,12 @@ public class PlayerMovement : MonoBehaviour
             ZombieDef zombie = nearbyObject.transform.GetComponent<ZombieDef>();
             if (zombie != null)
             {
-                zombie.getCold(scare_Time);
+                zombie.GetCold(scare_Time);
             }
         }
-        yield return new WaitForSeconds(freeze_Time);
     }
-    IEnumerator Scare()
+
+    private void Scare()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(gameObject.transform.position, scare_range);
         foreach (Collider2D nearbyObject in colliders)
@@ -227,10 +227,8 @@ public class PlayerMovement : MonoBehaviour
             ZombieDef zombie = nearbyObject.transform.GetComponent<ZombieDef>();
             if (zombie != null)
             {
-                zombie.getSpooky(scare_Time);
+                zombie.GetSpooky(scare_Time);
             }
         }
-        yield return new WaitForSeconds(scare_Time);
-
     }
 }
